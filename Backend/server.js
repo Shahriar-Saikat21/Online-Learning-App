@@ -1,10 +1,14 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import cookieParser from 'cookie-parser';
-import cors from 'cors';
+import express from "express";
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+import cors from "cors";
 
-//internal imports  
-import {pageNotFound,defaultErrorHandle} from './Middleware/defaultErrorHandle.js';
+//internal imports
+import {
+  pageNotFound,
+  defaultErrorHandle,
+} from "./Middleware/defaultErrorHandle.js";
+import connection from "./Middleware/dbConnect.js";
 
 //App Initialized
 const app = express();
@@ -15,16 +19,27 @@ app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
 // CORS settings
-app.use(cors({
-    origin: 'http://localhost:5173',
-    credentials: true
-}));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+
+
+//Query Example
+app.get("/", (req, res) => {
+  const query ="SELECT * FROM users";
+    connection.query(query,function (err, rows, fields) {     
+      res.json(rows);
+    });
+});
 
 // Default Error Handle
 app.use(pageNotFound);
 app.use(defaultErrorHandle);
 
 // Server Started
-app.listen(process.env.PORT,() => {
-    console.log(`Server is running on port: ${process.env.port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on port: ${process.env.port}`);
 });

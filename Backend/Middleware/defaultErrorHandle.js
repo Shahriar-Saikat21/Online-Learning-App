@@ -4,12 +4,12 @@ export function pageNotFound(req, res, next) {
 
 export function defaultErrorHandle(err, req, res, next) {
     if (err.message) {
-        res.render('notFoundPage',{
+        res.json({
             status : 404,
             message : err.message
         });
     } else {
-        res.render('notFoundPage',{
+        res.json({
             status : 500,
             message : "An ERROR has been occured"
         });
