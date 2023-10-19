@@ -29,8 +29,8 @@ app.use(
 
 //Query Example
 app.get("/", (req, res) => {
-  const query ="SELECT * FROM users";
-    connection.query(query,function (err, rows, fields) {     
+  const query ="SELECT * FROM users WHERE user_id = ?";
+    connection.query(query,[req.body.id],function (err, rows, fields) {     
       res.json(rows);
     });
 });
