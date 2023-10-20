@@ -2,7 +2,7 @@ import {useState} from 'react'
 import { NavLink} from "react-router-dom";
 import { HiOutlineBars4,HiOutlineXMark } from "react-icons/hi2";
 
-const VisitorNavbar = () => {
+const InstructorNavbar = () => {
   const[toggle,setToggle]=useState(false);
   const toggleHandler=()=>{setToggle(!toggle)};
 
@@ -13,8 +13,10 @@ const VisitorNavbar = () => {
             <NavLink to={"/"} className="text-3xl font-bold text-[#ffffff] ml-2 font-primary">Learn Hub</NavLink>
         </div>
         <ul className="hidden md:flex justify-center items-center gap-4 ">
-          <NavLink to={"/login"}className=" pcNav">Login</NavLink>
-          <NavLink to={"/signup"}className=" pcNav">Signup</NavLink>
+          <NavLink to={"/instructor-home"}className=" pcNav">Home</NavLink>
+          <NavLink to={"/instructor-profile"}className=" pcNav">Profile</NavLink>
+          <NavLink to={"/instructor-course"}className=" pcNav">Course</NavLink>
+          <NavLink to={"/"}className=" pcNav">Logout</NavLink>
         </ul>
         <div className='md:hidden' onClick={toggleHandler}>
           {
@@ -24,8 +26,10 @@ const VisitorNavbar = () => {
         </div>
         <div className={toggle?'absolute bg-primary w-full md:hidden border-b top-[40px] left-0':'hidden'}>
           <ul className=" p-6 flex flex-col gap-2">
-            <NavLink to={"/login"} className=" mobileNav">Login</NavLink>
-            <NavLink to={"/signup"} className=" mobileNav">Signup</NavLink>    
+            <NavLink to={"/instructor-home"} className=" mobileNav">Home</NavLink>
+            <NavLink to={"/instructor-profile"} className=" mobileNav">Profile</NavLink>   
+            <NavLink to={"/instructor-course"} className=" mobileNav">Course</NavLink>    
+            <NavLink to={"/"} className=" mobileNav">Logout</NavLink>    
           </ul>
         </div>
         
@@ -34,4 +38,4 @@ const VisitorNavbar = () => {
   );
 };
 
-export default VisitorNavbar;
+export default InstructorNavbar;

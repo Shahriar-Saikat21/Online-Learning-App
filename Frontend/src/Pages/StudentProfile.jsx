@@ -1,11 +1,11 @@
 
 
-const LoginPage = () => {
+const StudentProfile = () => {
     return (
         <div className="flex w-full h-[100vh] justify-center items-center">
-            login
+            Student Profile
         </div>
     );
 };
 
-export default LoginPage;
+export default StudentProfile;

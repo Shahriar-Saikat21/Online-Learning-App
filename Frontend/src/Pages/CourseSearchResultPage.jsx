@@ -2,7 +2,7 @@
 
 const CourseSearchResultPage = () => {
     return (
-        <div>
+        <div className="flex w-full h-[100vh] justify-center items-center">
             Course Search Result Page
         </div>
     );

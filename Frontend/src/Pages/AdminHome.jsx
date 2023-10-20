@@ -1,11 +1,11 @@
 
 
-const LoginPage = () => {
+const AdminHome = () => {
     return (
         <div className="flex w-full h-[100vh] justify-center items-center">
-            login
+            Admin Home
         </div>
     );
 };
 
-export default LoginPage;
+export default AdminHome;

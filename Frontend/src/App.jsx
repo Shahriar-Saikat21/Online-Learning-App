@@ -9,20 +9,41 @@ import SignupPage from './Pages/SignupPage';
 import LoginPage from './Pages/LoginPage';
 import ForgetPassPage from './Pages/ForgetPassPage';
 import ResetPassPage from './Pages/ResetPassPage';
+import AdminHome from './Pages/AdminHome';
+import StudentHome from './Pages/StudentHome';
+import StudentProfile from './Pages/StudentProfile';
+import StudentCourse from './Pages/StudentCourse';
+import InstructorHome from './Pages/InstructorHome';
+import InstructorProfile from './Pages/InstructorProfile';
+import InstructorCourse from './Pages/InstructorCourse';
+import Layout from "./Components/Layout";
+
+
+
 
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/allCourse" element={<CourseExplorePage />} /> 
-      <Route path="/searchCourse" element={<CourseSearchResultPage />} />    
-      <Route path="/course/:courseId" element={<CourseDetailPage />} /> 
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/signup" element={<SignupPage />} />
-      <Route path="/forgetPassword" element={<ForgetPassPage />} />
-      <Route path="/resetPassword" element={<ResetPassPage />} />  
-      <Route path="/*" element={<NotFoundPage />} />
+      <Route path="/" element={<Layout><HomePage /></Layout>} />
+      <Route path="/allCourse" element={<Layout><CourseExplorePage /></Layout>} /> 
+      <Route path="/searchCourse" element={<Layout><CourseSearchResultPage /></Layout>} />    
+      <Route path="/course/:courseId" element={<Layout><CourseDetailPage /></Layout>} /> 
+      <Route path="/login" element={<Layout><LoginPage /></Layout>} />
+      <Route path="/signup" element={<Layout><SignupPage /></Layout>} />
+      <Route path="/forgetPassword" element={<Layout><ForgetPassPage /></Layout>} />
+      <Route path="/resetPassword" element={<Layout><ResetPassPage /></Layout>} /> 
 
+      <Route path="/admin-home" element={<Layout><AdminHome /></Layout>} /> 
+
+      <Route path="/student-home" element={<Layout><StudentHome /></Layout>} /> 
+      <Route path="/student-profile" element={<Layout><StudentProfile /></Layout>} /> 
+      <Route path="/student-course" element={<Layout><StudentCourse /></Layout>} /> 
+
+      <Route path="/instructor-home" element={<Layout><InstructorHome /></Layout>} />  
+      <Route path="/instructor-profile" element={<Layout><InstructorProfile /></Layout>} />  
+      <Route path="/instructor-course" element={<Layout><InstructorCourse /></Layout>} />  
+
+      <Route path="/*" element={<Layout><NotFoundPage /></Layout>} />
     </Routes>
   );
 };

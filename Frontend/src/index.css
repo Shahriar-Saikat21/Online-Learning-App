@@ -1,4 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+.pcNav{
+    @apply text-xl font-bold text-[#ffffff] cursor-pointer hover:text-yellow-400 transition ease-in-out duration-500;
+}
+
+.mobileNav{
+    @apply text-xl font-bold text-[#ffffff] cursor-pointer;
+}
+  

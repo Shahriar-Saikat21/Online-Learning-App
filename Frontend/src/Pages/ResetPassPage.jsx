@@ -2,7 +2,7 @@
 
 const ResetPassPage = () => {
     return (
-        <div>
+        <div className="flex w-full h-[100vh] justify-center items-center">
             Reset Password
         </div>
     );
