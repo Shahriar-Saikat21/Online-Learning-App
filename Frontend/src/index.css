@@ -11,4 +11,10 @@
 .mobileNav{
     @apply text-xl font-bold text-[#ffffff] cursor-pointer;
 }
+
+.btn {
+    @apply text-lg text-[#192655] border-2 font-bold bg-white my-5 py-2 
+      block px-2 rounded-md hover:bg-[#192655] hover:text-[#ffffff]  
+      hover:border-2 hover:border-[#ffffff] md:w-1/2 w-full transition duration-300 ease-in font-primary;
+  }
   

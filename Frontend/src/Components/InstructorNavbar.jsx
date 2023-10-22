@@ -15,7 +15,7 @@ const InstructorNavbar = () => {
         <ul className="hidden md:flex justify-center items-center gap-4 ">
           <NavLink to={"/instructor-home"}className=" pcNav">Home</NavLink>
           <NavLink to={"/instructor-profile"}className=" pcNav">Profile</NavLink>
-          <NavLink to={"/instructor-course"}className=" pcNav">Course</NavLink>
+          <NavLink to={"/createCourse"}className=" pcNav">Create</NavLink>
           <NavLink to={"/"}className=" pcNav">Logout</NavLink>
         </ul>
         <div className='md:hidden' onClick={toggleHandler}>

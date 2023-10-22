@@ -36,12 +36,11 @@ const App = () => {
       <Route path="/admin-home" element={<Layout><AdminHome /></Layout>} /> 
 
       <Route path="/student-home" element={<Layout><StudentHome /></Layout>} /> 
-      <Route path="/student-profile" element={<Layout><StudentProfile /></Layout>} /> 
-      <Route path="/student-course" element={<Layout><StudentCourse /></Layout>} /> 
+      <Route path="/student-profile" element={<Layout><StudentProfile /></Layout>} />  
 
       <Route path="/instructor-home" element={<Layout><InstructorHome /></Layout>} />  
       <Route path="/instructor-profile" element={<Layout><InstructorProfile /></Layout>} />  
-      <Route path="/instructor-course" element={<Layout><InstructorCourse /></Layout>} />  
+      <Route path="/createCourse" element={<Layout><InstructorCourse /></Layout>} />  
 
       <Route path="/*" element={<Layout><NotFoundPage /></Layout>} />
     </Routes>
