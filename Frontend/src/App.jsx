@@ -10,6 +10,9 @@ import LoginPage from './Pages/LoginPage';
 import ForgetPassPage from './Pages/ForgetPassPage';
 import ResetPassPage from './Pages/ResetPassPage';
 import AdminHome from './Pages/AdminHome';
+import AdminCheckProfilePage from './Pages/AdminCheckProfilePage';
+import AdminNewsPage from './Pages/AdminNewsPage';
+import AdminCategoryPage from './Pages/AdminCategoryPage';
 import StudentHome from './Pages/StudentHome';
 import StudentProfile from './Pages/StudentProfile';
 import StudentCourse from './Pages/StudentCourse';
@@ -17,8 +20,6 @@ import InstructorHome from './Pages/InstructorHome';
 import InstructorProfile from './Pages/InstructorProfile';
 import InstructorCourse from './Pages/InstructorCourse';
 import Layout from "./Components/Layout";
-
-
 
 
 const App = () => {
@@ -34,6 +35,9 @@ const App = () => {
       <Route path="/resetPassword" element={<Layout><ResetPassPage /></Layout>} /> 
 
       <Route path="/admin-home" element={<Layout><AdminHome /></Layout>} /> 
+      <Route path="/admin-check" element={<Layout><AdminCheckProfilePage /></Layout>} /> 
+      <Route path="/admin-news" element={<Layout><AdminNewsPage /></Layout>} /> 
+      <Route path="/admin-category" element={<Layout><AdminCategoryPage /></Layout>} /> 
 
       <Route path="/student-home" element={<Layout><StudentHome /></Layout>} /> 
       <Route path="/student-profile" element={<Layout><StudentProfile /></Layout>} />  
