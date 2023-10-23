@@ -7,7 +7,7 @@ const AdminNavbar = () => {
   const toggleHandler=()=>{setToggle(!toggle)};
 
   return (
-    <nav className="bg-primary fixed w-full h-[60px] ">
+    <nav className="bg-primary fixed w-full h-[60px] z-20">
       <div className=" md:max-w-[1480px] max-w-[600px] m-auto w-full h-full flex justify-between items-center md:px-12 px-4">
         <div className='flex justify-between items-center'>
             <NavLink to={"/"} className="text-3xl font-bold text-[#ffffff] ml-2 font-primary">Learn Hub</NavLink>

@@ -14,18 +14,19 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="flex justify-center items-center w-full px-5 pt-[100px] -z-30 mb-5">
+    <div className="flex justify-center items-center w-full px-5 pt-[100px] mb-5">
       <form className="w-full md:w-1/2 relative">
         <div className="relative">
           <input
             type="text"
             placeholder="Search..."
-            className="w-full p-4 rounded-full border-2 border-[#192655]"
+            className="w-full p-3 rounded-full border-2 border-[#192655]"
             onChange={handleChange}
+            value={search}
           />
           <button
             type="submit"
-            className="absolute right-1 top-1/2 -translate-y-1/2 p-4 bg-primary rounded-full text-white"
+            className="absolute right-1 top-1/2 -translate-y-1/2 p-4 bg-primary rounded-full text-white text-[15px]"
             onClick={handleClick}
           >
             <FaSistrix />
