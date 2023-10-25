@@ -11,7 +11,7 @@ const EditInfoModal = ({ isVisible, onClose }) => {
     <div
       id="wrapper"
       onClick={handle}
-      className="bg-black fixed inset-0 bg-opacity-25 backdrop-blur-sm flex justify-center items-center"
+      className="bg-black fixed inset-0 bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-10"
     >
       <div className="flex flex-col items-start justify-center bg-white rounded-lg w-[600px] p-6">
         <h1 className="text-xl text-[#192655] font-semibold font-primary text-center mb-4">

@@ -1,36 +1,38 @@
-const setAdminPassChangeModal = ({ isVisible, onClose }) => {
 
+
+const NewsModal = ({ isVisible, onClose }) => {
     const handle = (e) => {
         if(e.target.id === "wrapper")
             onClose();
     };
 
-  if (!isVisible) return null;
+    if (!isVisible) return null;
 
-  return (
-    <div
+    return (
+        <div
       id="wrapper"
       onClick={handle}
       className="bg-black fixed inset-0 bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-10"
     >
       <div className="flex flex-col items-start justify-center bg-white rounded-lg w-[600px] p-6">
         <h1 className="text-xl text-[#192655] font-semibold font-primary text-center mb-4">
-          Update Password
+          Add new news
         </h1>
-        <form className="w-full">
+        <form>
           <input
-            type="password"
-            placeholder="Enter New Password"
+            type="text"
+            placeholder="Give a title"
             className="border-2 border-[#192655] rounded-md p-2 w-full focus:outline-none mb-3"
           />
           <input
-            type="password"
-            placeholder="Confirm New Password"
+            type="file"
+            placeholder="Update Your Email"
+            accept=".png, .jpg, .jpeg"
             className="border-2 border-[#192655] rounded-md p-2 w-full focus:outline-none mb-3"
           />
           <div className="flex justify-center items-center gap-2">
             <button type="submit" className="btn inline-block">
-              Update
+              Add
             </button>
             <button className="btn inline-block" onClick={() => onClose()}>
               Cancel
@@ -39,7 +41,7 @@ const setAdminPassChangeModal = ({ isVisible, onClose }) => {
         </form>
       </div>
     </div>
-  );
+    );
 };
 
-export default setAdminPassChangeModal;
+export default NewsModal;
