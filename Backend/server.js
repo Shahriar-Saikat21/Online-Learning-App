@@ -8,7 +8,8 @@ import {
   pageNotFound,
   defaultErrorHandle,
 } from "./Middleware/defaultErrorHandle.js";
-import connection from "./Middleware/dbConnect.js";
+import adminRoute from "./Routes/adminRoute.js";
+
 
 //App Initialized
 const app = express();
@@ -26,14 +27,8 @@ app.use(
   })
 );
 
+app.use(adminRoute);
 
-//Query Example
-app.get("/", (req, res) => {
-  const query ="SELECT * FROM users WHERE user_id = ?";
-    connection.query(query,[req.body.id],function (err, rows, fields) {     
-      res.json(rows);
-    });
-});
 
 // Default Error Handle
 app.use(pageNotFound);

@@ -19,6 +19,9 @@ const NewsTable = () => {
                       Created At
                     </th>
                     <th scope="col" className="px-6 py-4">
+                      Created By
+                    </th>
+                    <th scope="col" className="px-6 py-4">
                       Image
                     </th>
                     <th scope="col" className="px-6 py-4">
@@ -35,6 +38,7 @@ const NewsTable = () => {
                       Discount Advertizement
                     </td>
                     <td className="whitespace-nowrap px-6 py-4">12-10-2030</td>
+                    <td className="whitespace-nowrap px-6 py-4">Admin One</td>
                     <td className="whitespace-nowrap px-6 py-4">
                       <img src={Pic} alt="" />
                     </td>

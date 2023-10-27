@@ -9,7 +9,7 @@ const AdminHome = () => {
             <AdminLink />
             <h1 className="text-3xl font-primary font-bold mx-3 text-start px-[40px]">Dashboard</h1>
             <AdminIncome />
-            <div className="flex md:flex-row w-full h-auto py-10 flex-col md:justify-center px-[20px] md:items-center gap-4">
+            <div className="flex  w-full h-auto py-10 flex-col md:justify-center px-[20px] md:items-center gap-4">
                 <AdminCategoryChart />
                 <AdminSaleChart />
             </div>
