@@ -1,42 +1,54 @@
 import Chart from "react-apexcharts";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import axios from "axios";
 
 const AdminSaleChart = () => {
-  const [stat, setStat] = useState({
-    options: {
-      chart: {
-        id: "basic-bar",
-      },
-      xaxis: {
-        categories: [
-          "Computer",
-          "Data",
-          "Business",
-          "EEE",
-          "BBA",
-          "Music",
-          "React",
-          "Express",
-        ],
-      },
-    },
-    series: [
-      {
-        name: "Total",
-        data: [30, 40, 45, 50, 49, 60, 70, 91],
-      },
-      {
-        name: "This Month",
-        data: [13, 14, 34, 25, 34, 16, 17, 19],
-      },
-    ],
-  });
+
+  const [category, setCategory] = useState([]);
+  const [total, setTotal] = useState([]);
+  const [thisMonth, setThisMonth] = useState([]);
+
+  useEffect(() => {
+    const c=[]
+    const t = []
+    const tm = []
+    axios.get("http://localhost:3000/adminSales")
+    .then((res) => {
+      res.data.map(item=>{
+        c.push(item.cat_name)
+        t.push(item.TOTAL_SELL)
+        tm.push(item.CURRENT_SELL)
+      })
+      setCategory(c)
+      setTotal(t)
+      setThisMonth(tm)
+    }).catch((err) => {
+      console.log(err)
+    });
+  }, []);
+  
   return (
     <div>
       <h2 className="text-xl font-primary font-bold">Sale Report</h2>
       <Chart
-        options={stat.options}
-        series={stat.series}
+        options={{
+          chart: {
+            id: "basic-bar"
+          },
+          xaxis: {
+            categories: category
+          }
+        }} 
+        series={[
+          {
+            name: "Total",
+            data: total,
+          },
+          {
+            name: "This Month",
+            data: thisMonth,
+          },
+        ]}
         type="line"
         width="500"
       />
