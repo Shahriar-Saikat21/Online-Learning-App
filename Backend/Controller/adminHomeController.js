@@ -15,16 +15,17 @@ export const adminIncome = (req, res) => {
 };
 
 export const adminCategory = (req, res) => {
-  const query = `SELECT T.cat_name, TOTAL_SELL, CURRENT_SELL FROM
-                (SELECT cat_name,COUNT(co_id) AS CURRENT_SELL FROM
-                (SELECT * FROM categories 
-                JOIN purchase WHERE cat_id = co_id) AS TEMP_TABLE 
-                WHERE MONTH(p_date) = MONTH(now()) AND YEAR(p_date) = YEAR(now())
-                GROUP BY cat_name) AS T 
-                JOIN (SELECT cat_name,COUNT(cat_name) AS TOTAL_SELL FROM
-                (SELECT * FROM categories 
-                JOIN purchase WHERE cat_id = co_id) AS TEMP_TABLE GROUP BY cat_name) AS S 
-                WHERE T.cat_name = S.cat_name`;
+  const query = `SELECT S.cat_name, TOTAL_SELL, CURRENT_SELL FROM
+  (SELECT cat_name,COUNT(cat_name) AS TOTAL_SELL FROM
+  (SELECT * FROM categories 
+  JOIN purchase WHERE cat_id = co_id) AS TEMP_TABLE GROUP BY cat_name) AS S
+  LEFT JOIN  
+  (SELECT cat_name,COUNT(co_id) AS CURRENT_SELL FROM
+  (SELECT * FROM categories 
+  JOIN purchase WHERE cat_id = co_id) AS TEMP_TABLE 
+  WHERE MONTH(p_date) = MONTH(now()) AND YEAR(p_date) = YEAR(now())
+  GROUP BY cat_name) AS T 
+  ON T.cat_name = S.cat_name`;
   connection.query(query, function (err, rows) {
     if (err) throw err;
     res.json(rows);
@@ -32,16 +33,17 @@ export const adminCategory = (req, res) => {
 };
 
 export const adminSale = (req, res) => {
-  const query = `SELECT T.cat_name, TOTAL_SELL, CURRENT_SELL FROM
+  const query = `SELECT S.cat_name, TOTAL_SELL, CURRENT_SELL FROM
+  (SELECT cat_name,SUM(p_amount) AS TOTAL_SELL FROM
+  (SELECT * FROM categories 
+  JOIN purchase WHERE cat_id = co_id) AS TEMP_TABLE GROUP BY cat_name) AS S 
+  LEFT JOIN 
   (SELECT cat_name,SUM(p_amount) AS CURRENT_SELL FROM
   (SELECT * FROM categories 
   JOIN purchase WHERE cat_id = co_id) AS TEMP_TABLE 
   WHERE MONTH(p_date) = MONTH(now()) AND YEAR(p_date) = YEAR(now())
   GROUP BY cat_name) AS T 
-  JOIN (SELECT cat_name,SUM(p_amount) AS TOTAL_SELL FROM
-  (SELECT * FROM categories 
-  JOIN purchase WHERE cat_id = co_id) AS TEMP_TABLE GROUP BY cat_name) AS S 
-  WHERE T.cat_name = S.cat_name`;
+  ON T.cat_name = S.cat_name`;
   connection.query(query, function (err, rows) {
     if (err) throw err;
     res.json(rows);
