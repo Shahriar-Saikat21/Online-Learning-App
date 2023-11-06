@@ -1,5 +1,24 @@
+import {useQuery} from 'react-query'
+import axios from 'axios'
+
+const instructorCart = async () => {
+  return axios.get('http://localhost:3000/instructorCart')
+}
+
 const InstructorChart = () => {
+
+  const {data, isLoading, isError, error} = useQuery('instructorCart', instructorCart )
+
+  if (isLoading) {
+    return <div>Loading..</div>
+  }
+
+  if (isError) {
+    return <div>Error Occured: {error.message}</div>
+  }
+
   return (
+    
     <div className="w-full md:mx-w-[1460px]">
       <h1 className="text-3xl font-semibold text-[#192655] md:pl-[100px]">Course History</h1>
       <div className="flex flex-col md:px-[80px] pb-[20px]">
@@ -24,14 +43,16 @@ const InstructorChart = () => {
                   </tr>
                 </thead>
                 <tbody className="font-semibold text-primary">
-                  <tr className="border-b transition duration-300 ease-in-out hover:bg-gray-300 ">
+                  {data?.data.map((item,i) => {
+                    return <tr key={i} className="border-b transition duration-300 ease-in-out hover:bg-gray-300 ">
                     <td className="whitespace-nowrap px-6 py-4 font-medium">
-                    Data Structure & Algorithm
+                    {item.TITLE}
                     </td>
-                    <td className="whitespace-nowrap px-6 py-4">12-10-2030</td>
-                    <td className="whitespace-nowrap px-6 py-4">27</td>
-                    <td className="whitespace-nowrap px-6 py-4">30000 BDT</td>
-                  </tr>
+                    <td className="whitespace-nowrap px-6 py-4">{item.CREATED}</td>
+                    <td className="whitespace-nowrap px-6 py-4">{item.ENROLLED}</td>
+                    <td className="whitespace-nowrap px-6 py-4">{item.SELL} BDT</td>
+                  </tr> 
+                  })}
                 </tbody>
               </table>
             </div>
