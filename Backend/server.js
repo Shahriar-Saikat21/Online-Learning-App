@@ -20,6 +20,8 @@ const dotenvConfig = dotenv.config();
 // Default Middlewares
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(express.static("Public"));
+
 
 // CORS settings
 app.use(
