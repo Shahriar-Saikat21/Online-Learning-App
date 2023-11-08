@@ -10,6 +10,7 @@ import {
 } from "./Middleware/defaultErrorHandle.js";
 import adminRoute from "./Routes/adminRoute.js";
 import instrctorRoute from "./Routes/instructorRoute.js";
+import visitorRoute from "./Routes/visitorRoute.js";
 
 
 //App Initialized
@@ -19,6 +20,8 @@ const dotenvConfig = dotenv.config();
 // Default Middlewares
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(express.static("Public"));
+
 
 // CORS settings
 app.use(
@@ -33,6 +36,9 @@ app.use(adminRoute);
 
 //Instructor Panel All Route
 app.use(instrctorRoute);
+
+//Visitor All Route
+app.use(visitorRoute);
 
 
 // Default Error Handle
