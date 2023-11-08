@@ -4,12 +4,12 @@ const LoginPage = () => {
   return (
     <div className="flex flex-col w-screen h-screen">
       <div className="absolute flex flex-col justify-center">
-        <img src={pic} alt="Home pic" className="object-cover" />
+        <img src={pic} alt="Home pic" className="object-cover -z-40" />
       </div>
-      <div className="grid-rows-span-full justify-center pt-60">
+      <div className="grid-rows-span-full justify-center pt-60 z-10">
         <div className="flex justify-center">
           <div className="flex flex-row justify-right pt-40">
-            <div className="relative w-[533px] h-[187px] mix-blend-difference [font-family:'Inter',Helvetica] font-black text-black text-[48px] leading-[normal]">
+            <div className="relative w-[533px] h-[187px] mix-blend-difference [font-family:'Inter',Helvetica] font-black text-black text-[48px] leading-[normal] ">
               Online learning &amp; <br />
               Teaching Platform
               <p className="absolute w-[533px] top-[122px] left-0 [font-family:'Inter-Bold',Helvetica] font-bold text-black text-[16px] leading-[normal] pt-5">
