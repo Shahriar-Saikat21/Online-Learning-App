@@ -3,7 +3,7 @@ import { useState } from "react";
 import InstructorIncome from "../Components/InstructorIncome";
 import InstructorChart from "../Components/InstructorChart";
 import WithdrawModal from "../Components/WithdrawModal";
-import AdminSaleChart from "../Components/AdminSaleChart";
+import InstructorSaleCart from "../Components/InstructorSaleCart";
 
 const InstructorHome = () => {
     const [showWithdarwModal, setWithdarwModal] = useState(false);
@@ -16,7 +16,7 @@ const InstructorHome = () => {
               Withdraw Income
             </button>
             <InstructorChart/>
-            <AdminSaleChart/>
+            <InstructorSaleCart/>
             <WithdrawModal isVisible={showWithdarwModal} onClose={()=>{setWithdarwModal(false)}}/>
         </div>
     );
