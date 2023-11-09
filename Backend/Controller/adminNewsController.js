@@ -20,9 +20,40 @@ export const uploadNews = (req,res)=>{
 };
 
 export const updateNewsStatus = (req,res)=>{
-
+    try{
+        if(req.body.status==="Down"){
+            const query = `UPDATE news SET news_status= CASE 
+            WHEN news_id = ? THEN "Live"  
+            ELSE "Down"
+            END`;
+            connection.query(query,[req.body.id],function(err,rows){
+                if(err) throw err;
+                res.json({success:true,message:"News updated successfully"});
+            });
+        }else if(req.body.status==="Live"){
+            const query = `UPDATE news SET news_status= "Down"
+            WHERE news_id = ?`;
+            connection.query(query,[req.body.id],function(err,rows){
+                if(err) throw err;
+                res.json({success:true,message:"News updated successfully"});
+            }); 
+        }else{
+            throw new Error("Something went wrong");
+        }
+    }catch(error){
+        res.json({success:false,message:error.message});
+    }
+    
 };
 
 export const deleteNews = (req,res)=>{
-
+    try{
+        const query = `DELETE FROM news WHERE news_id = ?`;
+        connection.query(query,[req.params.id],function(err,rows){
+            if(err) throw err;
+            res.json({success:true,message:"News deleted successfully"});
+        });
+    }catch(error){
+        res.json({success:false,message:error.message});
+    }
 };

@@ -20,15 +20,12 @@ const UploadNews = async (data) => {
 };
 
 const useUploadNews = () => {
-  const navigate = useNavigate();
   return useMutation(UploadNews, {
     onSuccess: (data) => {
-      alert(data.message);
-      navigate("/admin-news");
+      alert(data.message);     
     },
     onError: (error) => {
       alert(error.message || "An error is occured");
-      navigate("/admin-news");
     },
   });
 };
@@ -36,6 +33,7 @@ const useUploadNews = () => {
 const NewsModal = ({ isVisible, onClose }) => {
   const [image, setImage] = useState();
   const [title, setTitle] = useState("");
+  const navigate = useNavigate();
   const { mutate, isError, isLoading, error } = useUploadNews();
 
   const submit = (e) => {
@@ -44,6 +42,8 @@ const NewsModal = ({ isVisible, onClose }) => {
     newsdata.title = title;
     newsdata.image = image;
     mutate(newsdata);
+    onClose();
+    navigate("/admin-news");
   };
 
   const handle = (e) => {
@@ -72,7 +72,6 @@ const NewsModal = ({ isVisible, onClose }) => {
               setTitle(e.target.value);
             }}
           />
-          {/* <p className=" mb-2 text-red-600 font-semibold">{(titleRequired)?"Title is Required":""}</p> */}
           <input
             type="file"
             placeholder="Upload News Image"
@@ -83,7 +82,6 @@ const NewsModal = ({ isVisible, onClose }) => {
               setImage(e.target.files[0]);
             }}
           />
-          {/* <p className=" mb-2 text-red-600 font-semibold">{(imageRequired)?"Image is Required":""}</p> */}
           <div className="flex justify-center items-center gap-2">
             <button type="submit" className="btn inline-block" >
               Add

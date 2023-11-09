@@ -5,18 +5,17 @@ const newsAllView = async () => {
   return axios.get('http://localhost:3000/adminAllNews')
 }
 
-function updateStatus(id){
-  return async () => {
-    const data = await axios.put('http://localhost:3000/updateNewsStatus', {id})
-    console.log(data)
-  }
+async function updateStatus(id,status){
+  const formData = {id: id, status: status};
+  console.log(formData)
+  const data = await axios.put('http://localhost:3000/updateNewsStatus',formData)
+  alert(data.data.message);
+
 }
 
-function deleteNews(id){
-  return async () => {
-    const data = await axios.get('http://localhost:3000/deleteNews', {id})
-    console.log(data)
-  }
+async function deleteNews(id){
+  const data = await axios.get(`http://localhost:3000/deleteNews/${id}`)
+  alert(data.data.message);
 }
 
 const NewsTable = () => {
@@ -74,7 +73,7 @@ const NewsTable = () => {
                       <img src={"http://localhost:3000/Image/"+item.news_pic} alt="news_pic" />
                     </td>
                     <td className="whitespace-nowrap px-6 py-4">
-                      <button type="submit" className="btn md:w-full" onClick={()=>updateStatus(item.news_id)}>
+                      <button type="submit" className="btn md:w-full" onClick={()=>updateStatus(item.news_id,item.news_status)}>
                         {item.news_status === "Live" ? "Down Now" : "Live Now"}
                       </button>
                     </td>
