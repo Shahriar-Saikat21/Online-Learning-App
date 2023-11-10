@@ -3,6 +3,7 @@ import express from 'express'
 import upload from '../Middleware/uploadImage.js';
 import { adminIncome,adminCategory,adminSale } from '../Controller/adminHomeController.js';
 import {newsTableController,updateNewsStatus,deleteNews,uploadNews} from '../Controller/adminNewsController.js';
+import {addCategory,showCategory} from '../Controller/adminCategoryController.js';
 
 const adminRoute = express.Router();
 
@@ -26,5 +27,11 @@ adminRoute.put("/updateNewsStatus", updateNewsStatus);
 
 //admin delete news
 adminRoute.get("/deleteNews/:id", deleteNews);
+
+//admin add category
+adminRoute.post("/addCategory", addCategory);
+
+//admin show category
+adminRoute.get("/showCategory", showCategory);
 
 export default adminRoute;

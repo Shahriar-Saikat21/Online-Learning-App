@@ -62,7 +62,7 @@ const NewsTable = () => {
                   </tr>
                 </thead>
                 <tbody className="font-semibold text-primary">
-                  {data?.data.map((item,i) => {
+                  {data?.data.map((item) => {
                     return <tr key = {item.news_id} className="border-b transition duration-300 ease-in-out hover:bg-gray-300 ">
                     <td className="whitespace-nowrap px-6 py-4 font-medium">
                       {item.news_title}
