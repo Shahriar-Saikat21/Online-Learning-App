@@ -1,5 +1,34 @@
-import Pic from "../assets/home-pic.jpg";
+import {useQuery} from 'react-query'
+import axios from 'axios'
+
+const newsAllView = async () => {
+  return axios.get('http://localhost:3000/adminAllNews')
+}
+
+async function updateStatus(id,status){
+  const formData = {id: id, status: status};
+  console.log(formData)
+  const data = await axios.put('http://localhost:3000/updateNewsStatus',formData)
+  alert(data.data.message);
+
+}
+
+async function deleteNews(id){
+  const data = await axios.get(`http://localhost:3000/deleteNews/${id}`)
+  alert(data.data.message);
+}
+
 const NewsTable = () => {
+  const {data, isLoading, isError, error} = useQuery('newsAllItems', newsAllView )
+
+  if (isLoading) {
+    return <div>Loading..</div>
+  }
+
+  if (isError) {
+    return <div>Error Occured: {error.message}</div>
+  }
+
   return (
     <div className="w-full md:mx-w-[1460px]">
       <h1 className="text-3xl font-semibold text-[#192655] md:pl-[100px]">
@@ -33,26 +62,28 @@ const NewsTable = () => {
                   </tr>
                 </thead>
                 <tbody className="font-semibold text-primary">
-                  <tr className="border-b transition duration-300 ease-in-out hover:bg-gray-300 ">
+                  {data?.data.map((item) => {
+                    return <tr key = {item.news_id} className="border-b transition duration-300 ease-in-out hover:bg-gray-300 ">
                     <td className="whitespace-nowrap px-6 py-4 font-medium">
-                      Discount Advertizement
+                      {item.news_title}
                     </td>
-                    <td className="whitespace-nowrap px-6 py-4">12-10-2030</td>
-                    <td className="whitespace-nowrap px-6 py-4">Admin One</td>
+                    <td className="whitespace-nowrap px-6 py-4">{item.news_date}</td>
+                    <td className="whitespace-nowrap px-6 py-4">{item.user_name}</td>
                     <td className="whitespace-nowrap px-6 py-4">
-                      <img src={Pic} alt="" />
+                      <img src={"http://localhost:3000/Image/"+item.news_pic} alt="news_pic" />
                     </td>
                     <td className="whitespace-nowrap px-6 py-4">
-                      <button type="submit" className="btn md:w-full">
-                        Live Now
+                      <button type="submit" className="btn md:w-full" onClick={()=>updateStatus(item.news_id,item.news_status)}>
+                        {item.news_status === "Live" ? "Down Now" : "Live Now"}
                       </button>
                     </td>
                     <td className="whitespace-nowrap px-6 py-4">
-                      <button type="submit" className="btn md:w-full">
+                      <button type="submit" className="btn md:w-full" onClick={()=>deleteNews(item.news_id)}>
                         Delete
                       </button>
                     </td>
                   </tr>
+                  })}
                 </tbody>
               </table>
             </div>
