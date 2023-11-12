@@ -26,7 +26,7 @@ adminRoute.post("/uploadNews", upload.single("image"),uploadNews);
 adminRoute.put("/updateNewsStatus", updateNewsStatus);
 
 //admin delete news
-adminRoute.get("/deleteNews/:id", deleteNews);
+adminRoute.get("/deleteNews/:id/:pic", deleteNews);
 
 //admin add category
 adminRoute.post("/addCategory", addCategory);

@@ -13,8 +13,8 @@ async function updateStatus(id,status){
 
 }
 
-async function deleteNews(id){
-  const data = await axios.get(`http://localhost:3000/deleteNews/${id}`)
+async function deleteNews(id,picLink){
+  const data = await axios.get(`http://localhost:3000/deleteNews/${id}/${picLink}`)
   alert(data.data.message);
 }
 
@@ -78,7 +78,7 @@ const NewsTable = () => {
                       </button>
                     </td>
                     <td className="whitespace-nowrap px-6 py-4">
-                      <button type="submit" className="btn md:w-full" onClick={()=>deleteNews(item.news_id)}>
+                      <button type="submit" className="btn md:w-full" onClick={()=>deleteNews(item.news_id,item.news_pic)}>
                         Delete
                       </button>
                     </td>
