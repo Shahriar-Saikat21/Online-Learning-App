@@ -11,6 +11,7 @@ import {
 import adminRoute from "./Routes/adminRoute.js";
 import instrctorRoute from "./Routes/instructorRoute.js";
 import visitorRoute from "./Routes/visitorRoute.js";
+import userRouter from "./Routes/userManageRoute.js";
 
 
 //App Initialized
@@ -30,6 +31,9 @@ app.use(
     credentials: true,
   })
 );
+
+//user management all route
+app.use(userRouter);
 
 //Admin Panel All Route
 app.use(adminRoute);
