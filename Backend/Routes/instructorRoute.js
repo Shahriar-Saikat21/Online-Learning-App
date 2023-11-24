@@ -1,13 +1,14 @@
 import express from "express";
 
+import { authentication } from '../Middleware/authentication.js';
 import { instructorSale,instructorCart,instructorIncome } from '../Controller/instructorHomeController.js';
 
 const instrctorRoute = express.Router();
 
-instrctorRoute.get("/instructorSale", instructorSale);
+instrctorRoute.get("/instructorSale",authentication, instructorSale);
 
-instrctorRoute.get("/instructorCart", instructorCart);
+instrctorRoute.get("/instructorCart",authentication, instructorCart);
 
-instrctorRoute.get("/instructorIncome", instructorIncome);
+instrctorRoute.get("/instructorIncome", authentication,instructorIncome);
 
 export default instrctorRoute;

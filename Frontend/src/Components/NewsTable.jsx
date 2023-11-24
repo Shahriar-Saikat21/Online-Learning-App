@@ -2,19 +2,25 @@ import {useQuery} from 'react-query'
 import axios from 'axios'
 
 const newsAllView = async () => {
-  return axios.get('http://localhost:3000/adminAllNews')
+  return axios.get('http://localhost:3000/adminAllNews',{
+    withCredentials: true,
+  })
 }
 
 async function updateStatus(id,status){
   const formData = {id: id, status: status};
   console.log(formData)
-  const data = await axios.put('http://localhost:3000/updateNewsStatus',formData)
+  const data = await axios.put('http://localhost:3000/updateNewsStatus',formData,{
+    withCredentials: true,
+  })
   alert(data.data.message);
 
 }
 
 async function deleteNews(id,picLink){
-  const data = await axios.get(`http://localhost:3000/deleteNews/${id}/${picLink}`)
+  const data = await axios.get(`http://localhost:3000/deleteNews/${id}/${picLink}`,{
+    withCredentials: true,
+  })
   alert(data.data.message);
 }
 

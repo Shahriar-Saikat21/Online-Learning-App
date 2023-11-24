@@ -2,7 +2,9 @@ import {useQuery} from 'react-query'
 import axios from 'axios'
 
 const getAdminIncome = async () => {
-    return await axios.get('http://localhost:3000/adminIncome')
+    return await axios.get('http://localhost:3000/adminIncome',{
+        withCredentials: true,
+      })
 }
 
 const AdminIncome = () => {

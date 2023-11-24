@@ -16,7 +16,7 @@ export const newsTableController = (req, res) => {
 
 export const uploadNews = (req,res)=>{
     const query = `INSERT INTO news(news_id, news_date, news_title, news_pic, news_creator, news_status) VALUES ("",CURRENT_TIMESTAMP(),?,?,?,"Down")`;
-    connection.query(query,[req.body.title,req.file.filename,4],function(err,rows){
+    connection.query(query,[req.body.title,req.file.filename,req.userId],function(err,rows){
         if(err) throw err;
         res.json({success:true,message:"News uploaded successfully"});
     });

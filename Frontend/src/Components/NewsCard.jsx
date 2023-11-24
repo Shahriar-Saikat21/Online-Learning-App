@@ -5,7 +5,9 @@ import axios from 'axios';
 const NewsCard = () => {
     const [news,setNews] = useState("");
     useEffect(() => {
-        axios.get("http://localhost:3000/displayNews").then((res) => {
+        axios.get("http://localhost:3000/displayNews",{
+            withCredentials: true,
+          }).then((res) => {
             setNews(res.data[0].news_pic);
         }).catch((err) => {
             console.log(err);

@@ -13,6 +13,7 @@ export const login = async (req, res) => {
         if (isValidPass) {
           const userObject = {
             id: rows[0].user_id,
+            role: rows[0].user_role,
           };
 
           //token generate
