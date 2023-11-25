@@ -2,6 +2,8 @@ import express from 'express';
 
 import {signupOtp,signupValidation} from '../Controller/signupController.js';
 import {login,logout} from '../Controller/loginController.js'
+import {forgotPassword,resetPassword} from '../Controller/passwordController.js';
+
 
 const userRouter = express.Router();
 
@@ -13,8 +15,8 @@ userRouter.get('/login', login);
 
 userRouter.get('/logout', logout);
 
-userRouter.get('/forgotPassword', (req, res) => {});
+userRouter.get('/forgotPassword', forgotPassword);
 
-userRouter.post('/resetPassword', (req, res) => {});
+userRouter.put('/resetPassword', resetPassword);
 
 export default userRouter;
