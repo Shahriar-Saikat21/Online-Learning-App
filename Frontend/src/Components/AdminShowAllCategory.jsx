@@ -2,7 +2,9 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 const showAllCategory = async () => {
-  return axios.get("http://localhost:3000/showCategory");
+  return axios.get("http://localhost:3000/showCategory",{
+    withCredentials: true,
+  });
 };
 
 const AdminShowAllCategory = () => {

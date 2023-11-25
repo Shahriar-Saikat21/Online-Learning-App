@@ -1,10 +1,20 @@
 import {useState} from 'react'
-import { NavLink} from "react-router-dom";
+import { NavLink,useNavigate} from "react-router-dom";
 import { HiOutlineBars4,HiOutlineXMark } from "react-icons/hi2";
+
+import axios from 'axios';
+
+const logout = async ()=>{
+  await axios.get('http://localhost:3000/logout',{
+    withCredentials:true
+  });
+  sessionStorage.removeItem('status');
+}
 
 const StudentNavbar = () => {
   const[toggle,setToggle]=useState(false);
   const toggleHandler=()=>{setToggle(!toggle)};
+  const navigate = useNavigate();
 
   return (
     <nav className="bg-primary fixed w-full h-[60px] z-20">
@@ -15,7 +25,10 @@ const StudentNavbar = () => {
         <ul className="hidden md:flex justify-center items-center gap-4 ">
           <NavLink to={"/student-home"}className=" pcNav">Home</NavLink>
           <NavLink to={"/student-profile"}className=" pcNav">Profile</NavLink>
-          <NavLink to={"/"}className=" pcNav">Logout</NavLink>
+          <button className=" pcNav" onClick={async ()=>{
+              await logout(); 
+              navigate('/');              
+            }}>Logout</button>
         </ul>
         <div className='md:hidden' onClick={toggleHandler}>
           {
@@ -28,7 +41,10 @@ const StudentNavbar = () => {
             <NavLink to={"/student-home"} className=" mobileNav">Home</NavLink>
             <NavLink to={"/student-profile"} className=" mobileNav">Profile</NavLink>   
             <NavLink to={"/student-course"} className=" mobileNav">Course</NavLink>    
-            <NavLink to={"/"} className=" mobileNav">Logout</NavLink>    
+            <button className=" mobileNav" onClick={async ()=>{
+              await logout(); 
+              navigate('/');              
+            }}>Logout</button>    
           </ul>
         </div>
         

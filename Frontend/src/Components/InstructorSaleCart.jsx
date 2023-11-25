@@ -12,7 +12,9 @@ const InstructorSaleCart = () => {
     const c=[]
     const t = []
     const tm = []
-    axios.get("http://localhost:3000/instructorSale")
+    axios.get("http://localhost:3000/instructorSale",{
+      withCredentials: true,
+    })
     .then((res) => {
       res.data.map(item=>{
         c.push(item.COURSE_TITLE)

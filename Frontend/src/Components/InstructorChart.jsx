@@ -2,7 +2,9 @@ import {useQuery} from 'react-query'
 import axios from 'axios'
 
 const instructorCart = async () => {
-  return axios.get('http://localhost:3000/instructorCart')
+  return axios.get('http://localhost:3000/instructorCart',{
+    withCredentials: true,
+  })
 }
 
 const InstructorChart = () => {

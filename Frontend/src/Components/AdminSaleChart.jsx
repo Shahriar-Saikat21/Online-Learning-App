@@ -12,7 +12,9 @@ const AdminSaleChart = () => {
     const c=[]
     const t = []
     const tm = []
-    axios.get("http://localhost:3000/adminSales")
+    axios.get("http://localhost:3000/adminSales",{
+      withCredentials: true,
+    })
     .then((res) => {
       res.data.map(item=>{
         c.push(item.cat_name)

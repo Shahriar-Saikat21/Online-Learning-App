@@ -4,7 +4,9 @@ import axios from "axios";
 
 const addCategory = async (data) => {
     try {
-        const response = await axios.post('http://localhost:3000/addCategory', data);
+        const response = await axios.post('http://localhost:3000/addCategory', data,{
+          withCredentials: true,
+        });
         return response.data;
     } catch (error) {
         throw new Error('Failed to create account or network problems');

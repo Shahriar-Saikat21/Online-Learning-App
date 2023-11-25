@@ -2,7 +2,9 @@ import {useQuery} from 'react-query'
 import axios from 'axios'
 
 const instructorIncome = async () => {
-    return axios.get('http://localhost:3000/instructorIncome');
+    return axios.get('http://localhost:3000/instructorIncome',{
+        withCredentials: true,
+      });
 };
 
 const InstructorIncome = () => {
