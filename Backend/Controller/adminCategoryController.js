@@ -1,4 +1,5 @@
 import connection from "../Middleware/dbConnect.js";
+import bcrypt from "bcrypt";
 
 export const addCategory = (req, res) => {
     try{
@@ -23,4 +24,17 @@ export const showCategory = (req, res) => {
     }catch(error){
         res.json({message:error.message,success:false})
     }  
+};
+
+export const adminChangePassword = async(req, res) => {
+    try{
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const query = "UPDATE users SET user_password=? WHERE user_id = ?";
+        connection.query(query,[hashedPassword,req.id],function(err,rows){
+            if(err) throw err;
+            res.json({success:true,message:"Password Changed Successfully"});
+        });
+    }catch(error){
+        res.json({message:error.message,success:false})
+    }
 };
