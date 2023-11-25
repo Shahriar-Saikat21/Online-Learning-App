@@ -1,5 +1,4 @@
 import SearchBar from "../Components/SearchBar";
-import CourseCard from "../Components/CourseCard";
 
 const CourseSearchResultPage = () => {
   return (
@@ -11,8 +10,7 @@ const CourseSearchResultPage = () => {
         </h2>
         <div className="flex flex-col justify-center items-center w-full h-auto gap-3">
           <div className="flex flex-col justify-center items-center md:w-[70%]">
-            <CourseCard />
-            <CourseCard />
+
           </div>
         </div>
       </div>
