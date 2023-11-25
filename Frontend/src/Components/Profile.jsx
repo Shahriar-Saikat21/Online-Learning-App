@@ -31,7 +31,7 @@ const Profile = () => {
       <div className="flex md:flex-col gap-3">
         <div className="w-32 md:w-[400px] md:h-[300px] h-32 rounded-md ring ring-[#192655] ring-offset-2">
           <img
-            src={pic}
+            src={""}
             alt="profile-pic"
             className="h-full w-full object-cover rounded-md"
           />
