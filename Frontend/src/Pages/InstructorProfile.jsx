@@ -1,5 +1,5 @@
 import Profile from "../Components/Profile";
-
+import CourseList from '../Components/CourseCardOne';
 
 const InstructorProfile = () => {
   return (
@@ -9,7 +9,7 @@ const InstructorProfile = () => {
         <h1 className="text-3xl font-primary text-primary font-bold mb-5">
           Your Courses
         </h1>
-
+        <CourseList />
       </div>
     </div>
   );

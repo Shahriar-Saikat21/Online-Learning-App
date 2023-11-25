@@ -1,4 +1,5 @@
 import Profile from '../Components/Profile'
+import CourseList from '../Components/CourseCardOne';
 
 const StudentProfile = () => {
     return (
@@ -7,6 +8,7 @@ const StudentProfile = () => {
             <div className='flex flex-col w-full h-[100vh] justify-start items-start px-[50px] md:pt-[80px] mb-5 pb-5'>
                 <h1 className='text-3xl font-primary text-primary font-bold mb-5'>Your Courses</h1>
             </div>
+            <CourseList />
         </div>
     );
 };

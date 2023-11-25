@@ -1,4 +1,5 @@
 import SearchBar from "../Components/SearchBar";
+import CourseList from '../Components/CourseCardOne';
 
 const CourseSearchResultPage = () => {
   return (
@@ -10,7 +11,7 @@ const CourseSearchResultPage = () => {
         </h2>
         <div className="flex flex-col justify-center items-center w-full h-auto gap-3">
           <div className="flex flex-col justify-center items-center md:w-[70%]">
-
+          <CourseList />
           </div>
         </div>
       </div>

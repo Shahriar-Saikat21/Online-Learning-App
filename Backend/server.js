@@ -12,6 +12,7 @@ import adminRoute from "./Routes/adminRoute.js";
 import instrctorRoute from "./Routes/instructorRoute.js";
 import visitorRoute from "./Routes/visitorRoute.js";
 import userRouter from "./Routes/userManageRoute.js";
+import studentRoute from "./Routes/studentRoute.js";
 
 
 //App Initialized
@@ -43,6 +44,9 @@ app.use(instrctorRoute);
 
 //Visitor All Route
 app.use(visitorRoute);
+
+//Student all route
+app.use(studentRoute);
 
 
 // Default Error Handle
