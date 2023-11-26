@@ -11,13 +11,15 @@ const courseList = async () => {
   return await axios.get("http://localhost:3000/studentProfile", {
     withCredentials: true,
   });
-  
 };
 
 const CourseCardOne = () => {
+  const queryCacheName = (sessionStorage.getItem("status") === "instructor") ? "courseList" : "studentCourseList";
   const { data, isLoading, isError, error } = useQuery(
-    "courseList",
-    courseList
+    queryCacheName,
+    courseList,{
+      staleTime:0
+    }
   );
 
   if (isLoading) {

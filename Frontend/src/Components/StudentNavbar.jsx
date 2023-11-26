@@ -16,6 +16,7 @@ const StudentNavbar = () => {
   const toggleHandler=()=>{setToggle(!toggle)};
   const navigate = useNavigate();
 
+
   return (
     <nav className="bg-primary fixed w-full h-[60px] z-20">
       <div className=" md:max-w-[1480px] max-w-[600px] m-auto w-full h-full flex justify-between items-center md:px-12 px-4">
