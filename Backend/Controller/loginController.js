@@ -3,13 +3,13 @@ import connection from "../Middleware/dbConnect.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-export const login = async (req, res) => {
+export const login = (req, res) => {
   try {
     const query = `SELECT * FROM users WHERE user_email = ?`;
     connection.query(query, [req.query.email], function (err, rows) {
       if (err) throw err;
       if (rows.length > 0) {
-        const isValidPass = bcrypt.compare(req.query.password, rows[0].user_password);
+        const isValidPass =  bcrypt.compareSync(req.query.password, rows[0].user_password);
         if (isValidPass) {
           const userObject = {
             id: rows[0].user_id,

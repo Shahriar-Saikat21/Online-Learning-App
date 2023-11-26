@@ -17,9 +17,7 @@ const CourseCardOne = () => {
   const queryCacheName = (sessionStorage.getItem("status") === "instructor") ? "courseList" : "studentCourseList";
   const { data, isLoading, isError, error } = useQuery(
     queryCacheName,
-    courseList,{
-      staleTime:0
-    }
+    courseList
   );
 
   if (isLoading) {
