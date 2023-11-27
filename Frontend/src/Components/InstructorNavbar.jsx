@@ -24,7 +24,6 @@ const InstructorNavbar = () => {
         <ul className="hidden md:flex justify-center items-center gap-4 ">
           <NavLink to={"/instructor-home"}className=" pcNav">Home</NavLink>
           <NavLink to={"/instructor-profile"}className=" pcNav">Profile</NavLink>
-          <NavLink to={"/createCourse"}className=" pcNav">Create</NavLink>
           <button className=" pcNav"  onClick={async ()=>{
               await logout(); 
               navigate('/');              
@@ -39,8 +38,7 @@ const InstructorNavbar = () => {
         <div className={toggle?'absolute bg-primary w-full md:hidden border-b top-[40px] left-0':'hidden'}>
           <ul className=" p-6 flex flex-col gap-2">
             <NavLink to={"/instructor-home"} className=" mobileNav">Home</NavLink>
-            <NavLink to={"/instructor-profile"} className=" mobileNav">Profile</NavLink>   
-            <NavLink to={"/instructor-course"} className=" mobileNav">Course</NavLink>    
+            <NavLink to={"/instructor-profile"} className=" mobileNav">Profile</NavLink>     
             <button className=" mobileNav"  onClick={async ()=>{
               await logout(); 
               navigate('/');              

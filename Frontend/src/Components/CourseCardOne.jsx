@@ -34,14 +34,14 @@ const CourseCardOne = () => {
         return (
           <div
             key={course.co_id}
-            className="flex flex-col mb-5 rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] w-full md:flex-row"
+            className="flex flex-col mb-5 rounded-lg bg-slate-600 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] w-full md:flex-row"
           >
             <img
               className="h-96 w-full rounded-t-lg object-cover md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
               src={"http://localhost:3000/Image/" + course.co_pic}
               alt="course_pic"
             />
-            <div className="flex flex-col justify-start p-6 bg-primary">
+            <div className="flex flex-col justify-start p-6 bg-primary w-full">
               <h5 className="mb-2 text-2xl font-medium text-white ">
                 {course.co_title}
               </h5>
