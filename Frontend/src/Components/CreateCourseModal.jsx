@@ -94,7 +94,7 @@ const CreateCourseModal = ({ isVisible, onClose }) => {
                 setTitle(e.target.value);
               }}
           />
-          <input
+          <textarea
             type="text"
             placeholder="Give a short description of the course"
             required

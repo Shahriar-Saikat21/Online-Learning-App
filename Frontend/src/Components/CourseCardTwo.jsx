@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const CourseCardTwo = ({ info }) => {
   return (
-    <div className="block rounded-lg bg-primary shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+    <div className="block rounded-lg bg-primary shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:w-[270px] md:overflow-hidden">
       <div className="md:relative md:w-[270px] md:h-[200px]">
         <img
           className="rounded-t-lg md:absolute inset-0 w-full h-full object-cover"
@@ -17,7 +17,10 @@ const CourseCardTwo = ({ info }) => {
           {info.co_title}
         </h5>
         </div>
-        <p className="mb-4 text-base text-white italic">{info.co_des}</p>
+        <div className="h-24 overflow-hidden mb-3">
+          <p className="mb-4 text-base text-white italic">{info.co_des}</p>
+        </div>
+        
         <p className="mb-4 text-base text-white ">
           Created by : {info.user_name}
         </p>
