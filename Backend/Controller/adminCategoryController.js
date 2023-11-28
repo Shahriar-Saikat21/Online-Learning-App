@@ -30,7 +30,7 @@ export const adminChangePassword = async(req, res) => {
     try{
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const query = "UPDATE users SET user_password=? WHERE user_id = ?";
-        connection.query(query,[hashedPassword,req.id],function(err,rows){
+        connection.query(query,[hashedPassword,req.userId],function(err,rows){
             if(err) throw err;
             res.json({success:true,message:"Password Changed Successfully"});
         });
