@@ -19,8 +19,8 @@ const ResetPAss = () => {
   const navigate = useNavigate();
 
   const useReset = async (data) => {
-    if(sessionStorage.getItem('resetAuth') === 'ok'){
-      const email = sessionStorage.getItem('resetEmail');
+    if(localStorage.getItem('resetAuth') === 'ok'){
+      const email = localStorage.getItem('resetEmail');
       const resetdata = {
         email: email,
         password: data.password
@@ -35,8 +35,8 @@ const ResetPAss = () => {
     } else{
       alert("You are not authorized to reset password");
     }
-    sessionStorage.removeItem('resetAuth');
-    sessionStorage.removeItem('resetEmail');
+    localStorage.removeItem('resetAuth');
+    localStorage.removeItem('resetEmail');
     reset();
   };
     return (

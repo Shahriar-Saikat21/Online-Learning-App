@@ -5,8 +5,8 @@ export default function mailSent(userMail,mailSubject, mailBody) {
     host: 'smtp.ethereal.email',
     port: 587,
     auth: {
-        user: 'clinton.heathcote@ethereal.email',
-        pass: 'mJvNAEAPN73ncefcVz'
+        user: 'mabelle.cronin69@ethereal.email',
+        pass: 'SxhQ39ZZTrc9fVaFx2'
     }
   });
 

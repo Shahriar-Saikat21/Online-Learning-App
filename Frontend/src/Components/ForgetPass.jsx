@@ -19,8 +19,8 @@ const ForgetPass = () => {
   const onSubmit = async (data) => {
     const result = await submitEmail(data);
     if(result.success){
-      sessionStorage.setItem("resetAuth", 'ok');
-      sessionStorage.setItem("resetEmail", data.email);
+      localStorage.setItem("resetAuth", 'ok');
+      localStorage.setItem("resetEmail", data.email);
       alert(result.message);
     }else{
       alert(result.message);
