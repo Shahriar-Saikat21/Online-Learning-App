@@ -31,3 +31,15 @@ export const instructorCourse = async (req, res) => {
         res.json({message:err,success:false});
     }
 };
+
+export const changeProfilePic = (req,res) =>{
+    try{
+        const query = `UPDATE users SET u_pic = ? WHERE user_id = ?`;
+        connection.query(query,[req.file.filename, req.userId],(err, rows) => {
+            if(err) throw err;
+            res.json({ success: true, message: "Profile Picture Updated Successfully" });
+        });
+    }catch(error){
+        res.json({success:false,message:error.message});
+    }
+}

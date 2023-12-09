@@ -1,4 +1,48 @@
+import axios from "axios";
+import {useState} from 'react';
+import { useNavigate } from "react-router-dom";
+import { useMutation } from "react-query";
+
+
+const updatePic = async (data) => {
+  try {
+    const response = await axios.put(
+      "http://localhost:3000/profileChangePic",
+      data,
+      {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to update Picture or network problems");
+  }
+};
+
+const useUploadPic = () => {
+  return useMutation(updatePic, {
+    onSuccess: (data) => {
+      alert(data.message);
+    },
+    onError: (error) => {
+      alert(error.message || "An error is occured");
+    },
+  });
+};
+
 const EditPicModal = ({ isVisible, onClose }) => {
+  const { mutate, isError, isLoading, error } = useUploadPic();
+  const [image, setImage] = useState();
+  const navigate = useNavigate();
+  const submit = (e) => {
+    e.preventDefault();
+    const profileImage = { image };
+    profileImage.image = image;
+    mutate(profileImage);
+    onClose();
+    navigate("/instructor-profile");
+  };
 
     const handle = (e) => {
         if(e.target.id === "wrapper")
@@ -17,12 +61,15 @@ const EditPicModal = ({ isVisible, onClose }) => {
         <h1 className="text-xl text-[#192655] font-semibold font-primary text-center mb-4">
           Update Profile Picture
         </h1>
-        <form className="w-full">
+        <form className="w-full" onSubmit={submit}>
           <input
             type="file"
             placeholder="Upload a picture"
             accept=".png, .jpg, .jpeg"
             className="border-2 border-[#192655] rounded-md p-2 w-full focus:outline-none"
+            onChange={(e) => {
+              setImage(e.target.files[0]);
+            }}
           />
           <div className="flex justify-center items-center gap-2">
             <button type="submit" className="btn inline-block">

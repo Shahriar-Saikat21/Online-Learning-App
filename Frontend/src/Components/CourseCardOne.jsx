@@ -49,6 +49,9 @@ const CourseCardOne = () => {
               <Link
                 to={"/course/" + course.co_id}
                 className=" px-6 pb-2 pt-2.5 text-lg font-medium leading-normal text-white"
+                onClick={() => {
+                  sessionStorage.setItem("courseID", course.co_id);
+                }}
               >
                 Show Detail
               </Link>

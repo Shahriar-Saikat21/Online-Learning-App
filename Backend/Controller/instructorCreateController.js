@@ -19,3 +19,15 @@ export const getCourseCategory = (req,res)=>{
         res.json({message:error.message,success:false})
     }  
 };
+
+export const editCourseHead = (req,res)=>{
+    try{
+        const query = "UPDATE courses SET co_title=?,co_des=?,co_price=? WHERE co_id=?";
+        connection.query(query,[req.body.title,req.body.description,req.body.price,req.body.courseID],function(err,rows){
+            if(err) throw err;
+            res.json({success:true,message:"Course updated successfully"});
+        });
+    }catch(error){
+        res.json({message:error.message,success:false})
+    }  
+}
