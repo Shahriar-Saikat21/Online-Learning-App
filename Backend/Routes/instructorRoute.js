@@ -1,10 +1,11 @@
 import express from "express";
 import upload from '../Middleware/uploadImage.js';
+import uploadVideo from '../Middleware/uploadVideo.js';
 import { authentication } from '../Middleware/authentication.js';
 import { instructorSale,instructorCart,instructorIncome } from '../Controller/instructorHomeController.js';
 import {instructorProfile,instructorCourse,changeProfilePic} from '../Controller/instructorProfileController.js'
 import { createCourse,getCourseCategory,editCourseHead } from '../Controller/instructorCreateController.js';
-import {getCourseHead} from '../Controller/instructorCourseController.js';
+import {getCourseHead,addModule,getModule} from '../Controller/instructorCourseController.js';
 
 const instrctorRoute = express.Router();
 
@@ -27,5 +28,9 @@ instrctorRoute.put("/profileChangePic", authentication,upload.single("image"),ch
 instrctorRoute.put("/editCourseHead", authentication,editCourseHead);
 
 instrctorRoute.get("/getCourseHead",authentication,getCourseHead);
+
+instrctorRoute.post("/addModule",authentication,uploadVideo.single("video"),addModule);
+
+instrctorRoute.get("/getModule",authentication,getModule);
 
 export default instrctorRoute;
