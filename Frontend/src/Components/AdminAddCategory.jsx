@@ -9,7 +9,7 @@ const addCategory = async (data) => {
         });
         return response.data;
     } catch (error) {
-        throw new Error('Failed to create account or network problems');
+        throw new Error('Failed to add new category or network problems');
     }
 };
 

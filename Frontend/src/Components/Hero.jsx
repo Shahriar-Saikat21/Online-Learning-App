@@ -15,7 +15,7 @@ const Hero = () => {
         </p>
         <Link
           to="/allCourse"
-          className="btn mt-5 text-center"
+          className="btnTwo mt-5 text-center"
         >
           Explore Courses
         </Link>

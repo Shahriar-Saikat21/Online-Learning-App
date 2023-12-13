@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {Navigate} from 'react-router-dom'
 
 import InstructorIncome from "../Components/InstructorIncome";
 import InstructorChart from "../Components/InstructorChart";
@@ -7,10 +8,13 @@ import InstructorSaleCart from "../Components/InstructorSaleCart";
 
 const InstructorHome = () => {
     const [showWithdarwModal, setWithdarwModal] = useState(false);
+    if(!localStorage.getItem("token") && sessionStorage.getItem("status")!=="instructor"){
+        return <Navigate to='/login' />
+    }
     return (
         <div className="flex flex-col w-full h-auto justify-center items-center md:max-w-[1460px] m-auto gap-3">
             <InstructorIncome />
-            <button className="btn" onClick={()=>{
+            <button className="btnTwo" onClick={()=>{
                 setWithdarwModal(true);
             }}>
               Withdraw Income

@@ -7,7 +7,8 @@ const logout = async ()=>{
   await axios.get('http://localhost:3000/logout',{
     withCredentials:true
   });
-  sessionStorage.removeItem('status');
+  sessionStorage.clear();
+  localStorage.clear();
 }
 
 const AdminNavbar = () => {

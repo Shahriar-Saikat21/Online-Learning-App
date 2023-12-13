@@ -45,7 +45,6 @@ const EditCourseTitle = ({ isVisible, onClose, name, prices, des, courseID }) =>
     coursedata.description = description;
     coursedata.price = price;
     coursedata.courseID = courseID;
-    console.log(coursedata)
     mutate(coursedata);
     onClose();
     navigate(`/course/${courseID}}`);

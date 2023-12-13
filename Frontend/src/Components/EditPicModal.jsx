@@ -31,14 +31,15 @@ const useUploadPic = () => {
   });
 };
 
-const EditPicModal = ({ isVisible, onClose }) => {
+const EditPicModal = ({ isVisible, onClose,picID }) => {
   const { mutate, isError, isLoading, error } = useUploadPic();
   const [image, setImage] = useState();
   const navigate = useNavigate();
   const submit = (e) => {
     e.preventDefault();
-    const profileImage = { image };
+    const profileImage = { image,picID };
     profileImage.image = image;
+    profileImage.picID = picID;
     mutate(profileImage);
     onClose();
     navigate("/instructor-profile");

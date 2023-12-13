@@ -84,12 +84,15 @@ const Profile = () => {
         onClose={() => {
           setEditInfo(false);
         }}
+        name={data?.data.info[0].user_name}
+        email = {data?.data.info[0].user_email}
       />
       <EditPicModal
         isVisible={showEditPic}
         onClose={() => {
           setEditPic(false);
         }}
+        picID = {data?.data.info[0].u_pic}
       />
       <CreateCourseModal
         isVisible={showCreate}

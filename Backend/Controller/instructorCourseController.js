@@ -36,3 +36,26 @@ export const getModule = (req,res)=>{
         res.json({message:error.message,success:false})
     }
 }
+
+export const deleteCourse = (req,res)=>{
+    try{
+        let one = false,two = false;
+        const query1 = "DELETE FROM modules WHERE co_id = ?";
+        connection.query(query1,[parseInt(req.query.id)],function(err,rows){
+            if(err) throw err;
+            one = true;
+        });
+        const query2 = "DELETE FROM courses WHERE co_id = ?";
+            connection.query(query2,[parseInt(req.query.id)],function(err,rows){
+                if(err) throw err;
+                two = true;
+            });
+        if(one && two){
+            res.json({success:true,message:"Course deleted successfully"});
+        }else{
+            res.json({success:false,message:"Error while deleting course"});
+        }
+    }catch(error){
+        res.json({message:error.message,success:false})
+    }
+}

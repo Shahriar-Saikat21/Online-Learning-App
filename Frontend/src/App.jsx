@@ -17,10 +17,8 @@ import AdminNewsPage from "./Pages/AdminNewsPage";
 import AdminCategoryPage from "./Pages/AdminCategoryPage";
 import StudentHome from "./Pages/StudentHome";
 import StudentProfile from "./Pages/StudentProfile";
-import StudentCourse from "./Pages/StudentCourse";
 import InstructorHome from "./Pages/InstructorHome";
 import InstructorProfile from "./Pages/InstructorProfile";
-import InstructorCourse from "./Pages/InstructorCourse";
 import Layout from "./Components/Layout";
 
 const queryClient = new QueryClient();
@@ -160,15 +158,6 @@ const App = () => {
             </Layout>
           }
         />
-        <Route
-          path="/createCourse"
-          element={
-            <Layout>
-              <InstructorCourse />
-            </Layout>
-          }
-        />
-
         <Route
           path="/*"
           element={

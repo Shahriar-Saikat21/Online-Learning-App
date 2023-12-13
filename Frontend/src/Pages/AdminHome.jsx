@@ -2,8 +2,12 @@ import AdminLink from "../Components/AdminLink";
 import AdminIncome from "../Components/AdminIncome";
 import AdminCategoryChart from "../Components/AdminCategoryChart";
 import AdminSaleChart from "../Components/AdminSaleChart";
+import {Navigate} from 'react-router-dom'
 
 const AdminHome = () => {
+    if(!localStorage.getItem("token") && sessionStorage.getItem("status")!=="admin"){
+        return <Navigate to='/login' />
+    }
     return (
         <div className="flex flex-col w-full h-auto justify-center items-start md:max-w-[1460px] m-auto gap-3 ">
             <AdminLink />

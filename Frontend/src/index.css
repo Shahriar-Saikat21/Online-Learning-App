@@ -15,6 +15,12 @@
 .btn {
     @apply text-lg text-[#192655] border-2 border-[#192655] font-bold bg-white my-5 py-2 
       block px-2 rounded-md hover:bg-[#192655] hover:text-[#ffffff]  
+      hover:border-2 hover:border-[#ffffff]  w-full transition duration-300 ease-in font-primary;
+  }
+
+.btnTwo {
+    @apply text-lg text-[#192655] border-2 border-[#192655] font-bold bg-white my-5 py-2 
+      block px-2 rounded-md hover:bg-[#192655] hover:text-[#ffffff]  
       hover:border-2 hover:border-[#ffffff]  md:w-1/2 w-full transition duration-300 ease-in font-primary;
   }
 

@@ -1,7 +1,11 @@
 import Profile from "../Components/Profile";
 import CourseList from "../Components/CourseCardOne";
+import {Navigate} from 'react-router-dom'
 
 const StudentProfile = () => {
+  if(!localStorage.getItem("token") && sessionStorage.getItem("status")!=="student"){
+    return <Navigate to='/login' />
+  }
   return (
     <div className="flex flex-col md:flex-row w-full h-[100vh] justify-start items-center md:max-w-[1460px] m-auto">
       <Profile />

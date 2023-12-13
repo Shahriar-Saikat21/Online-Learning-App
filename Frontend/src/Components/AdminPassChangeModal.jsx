@@ -25,9 +25,11 @@ const AdminPassChangeModal = ({ isVisible, onClose }) => {
     const result = await resetPassword(data);
     if (result.success) {
       alert(result.message);
+      onClose();
       navigate("/admin-home");
     } else {
       alert(result.message);
+      onClose();
       navigate("/admin-home");
     }
     reset();

@@ -22,6 +22,7 @@ const Login = () => {
     const result = await logindata(data);
     if(result.success){
       sessionStorage.setItem('status', result.role);
+      localStorage.setItem('token', result.success);
       if(result.role === 'admin'){
         navigate('/admin-home');
       }else if(result.role === 'student'){
