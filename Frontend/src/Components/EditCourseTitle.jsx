@@ -47,7 +47,7 @@ const EditCourseTitle = ({ isVisible, onClose, name, prices, des, courseID }) =>
     coursedata.courseID = courseID;
     mutate(coursedata);
     onClose();
-    navigate(`/course/${courseID}}`);
+    navigate(`/course/${courseID}`);
   };
 
 

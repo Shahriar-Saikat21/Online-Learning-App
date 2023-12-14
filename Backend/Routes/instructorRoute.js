@@ -27,11 +27,11 @@ instrctorRoute.put("/profileChangePic", authentication,upload.single("image"),ch
 
 instrctorRoute.put("/editCourseHead", authentication,editCourseHead);
 
-instrctorRoute.get("/getCourseHead",authentication,getCourseHead);
+instrctorRoute.get("/getCourseHead",getCourseHead);
 
 instrctorRoute.post("/addModule",authentication,uploadVideo.single("video"),addModule);
 
-instrctorRoute.get("/getModule",authentication,getModule);
+instrctorRoute.get("/getModule",getModule);
 
 instrctorRoute.get("/deleteCourse",authentication,deleteCourse);
 

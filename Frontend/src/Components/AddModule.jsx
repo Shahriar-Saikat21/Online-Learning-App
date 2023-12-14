@@ -32,7 +32,7 @@ const useAddModule = () => {
 };
 
 const AddModule = ({ isVisible, onClose,courseID }) => {
-    const { mutate, isError, isLoading, error } = useAddModule();
+  const { mutate, isError, isLoading, error } = useAddModule();
   const [video, setVideo] = useState();
   const [name, setName] = useState();
   const [serial, setSerial] = useState();
@@ -46,7 +46,7 @@ const AddModule = ({ isVisible, onClose,courseID }) => {
     profileImage.courseID = courseID;
     mutate(profileImage);
     onClose();
-    navigate(`/course/${courseID}}`);
+    navigate(`/course/${courseID}`);
   };
 
     const handle = (e) => {

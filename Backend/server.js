@@ -13,6 +13,7 @@ import instrctorRoute from "./Routes/instructorRoute.js";
 import visitorRoute from "./Routes/visitorRoute.js";
 import userRouter from "./Routes/userManageRoute.js";
 import studentRoute from "./Routes/studentRoute.js";
+import courseRoute from "./Routes/courseRoute.js";
 
 
 //App Initialized
@@ -47,6 +48,9 @@ app.use(visitorRoute);
 
 //Student all route
 app.use(studentRoute);
+
+//Course all route
+app.use(courseRoute);
 
 
 // Default Error Handle
