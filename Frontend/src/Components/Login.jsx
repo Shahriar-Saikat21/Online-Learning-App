@@ -23,13 +23,20 @@ const Login = () => {
     if(result.success){
       sessionStorage.setItem('status', result.role);
       localStorage.setItem('token', result.success);
-      if(result.role === 'admin'){
-        navigate('/admin-home');
-      }else if(result.role === 'student'){
-        navigate('/student-home');
+      const toBuy = localStorage.getItem('toBuy');
+      if(toBuy!==null){
+        localStorage.removeItem('toBuy');
+        navigate(`/course/${toBuy}`);
       }else{
-        navigate('/instructor-home');
+        if(result.role === 'admin'){
+          navigate('/admin-home');
+        }else if(result.role === 'student'){
+          navigate('/student-home');
+        }else{
+          navigate('/instructor-home');
+        }
       }
+      
     }else{
       alert(result.message);
       navigate('/');      

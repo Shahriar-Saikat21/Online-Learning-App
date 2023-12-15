@@ -1,8 +1,10 @@
 import EditCourseTitle from "../Components/EditCourseTitle";
+import Payment from './Payment';
 import { Link,useNavigate, useParams} from "react-router-dom";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
+
 
 const courseInfo =async (courseId) => {
   return await axios.get(`http://localhost:3000/getCourseHead?id=${courseId}`, {
@@ -21,8 +23,9 @@ const CourseHead = ({status,role}) => {
   const {courseId} = useParams();
   const navigate = useNavigate();
   const [showCreate, setshowCreate] = useState(false);
+  const [showPayment,setShowPayment] = useState(false);
   const { data, isLoading, isError, error } = useQuery(['courseHead',courseId],()=>courseInfo(courseId));
-
+  
   const deleteCourse = async (courseID) => {
     // const result = await deleteCourseFunc(courseID);
     // if(result.success){
@@ -55,6 +58,22 @@ const CourseHead = ({status,role}) => {
       <p className="text-md font-primary text-justify mb-2">{data?.data[0].co_des}</p>
       <h2 className="text-xl font-primary font-bold">{data?.data[0].co_price} BDT</h2>
 
+      {!status && role==='visitor' && 
+        <>
+          <button className="btnTwo" onClick={()=>{
+            if(localStorage.getItem('token')===null){
+              localStorage.setItem('toBuy',courseId);
+              navigate('/login');
+            }else{
+              setShowPayment(true);
+            }
+          }}>
+            Buy This Course
+          </button>
+        
+        </>
+      }
+
       {status && role==="instructor" && (
         <>
           <Link
@@ -82,6 +101,14 @@ const CourseHead = ({status,role}) => {
         prices={data?.data[0].co_price}
         des={data?.data[0].co_des}
         courseID={courseId}
+      />
+      <Payment isVisible={showPayment}
+        onClose={() => {
+          setShowPayment(false);
+        }}
+        amount={data?.data[0].co_price}
+        title={data?.data[0].co_title}
+        seller={data?.data[0].co_creator}
       />
     </div>
   );
