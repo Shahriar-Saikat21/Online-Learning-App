@@ -1,12 +1,13 @@
 import {Navigate} from 'react-router-dom'
+import StudentPurchaseHistory from '../Components/StudentPurchaseHistory';
 
 const StudentHome = () => {
     if(!localStorage.getItem("token") && sessionStorage.getItem("status")!=="student"){
         return <Navigate to='/login' />
     }
     return (
-        <div className="flex w-full h-[100vh] justify-center items-center">
-            Student Home
+        <div className="flex w-full h-[100dvh] justify-start items-start pt-[80px]">
+            <StudentPurchaseHistory />
         </div>
     );
 };
