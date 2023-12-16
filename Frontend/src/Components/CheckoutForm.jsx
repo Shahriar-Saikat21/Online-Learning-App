@@ -17,7 +17,7 @@ const makePayment = async (amount,seller,courseId,courseName) => {
         const result = stripe.redirectToCheckout({
             sessionId:response.data.id
         });
-        
+
         if(result.error){
             console.log(result.error);
         }
@@ -28,12 +28,9 @@ const CheckoutForm = ({ amount,seller,courseName }) => {
 
   return (
     <>
-        <h1>Amount {amount} </h1>
-        <h1>course {courseId} </h1>
-        <h1>seller {seller} </h1>
-        <button className="btnTwo" type="button" onClick={()=>{makePayment(amount,seller,courseId,courseName)}}>
-            Pay Now
-          </button>
+      <button className="btnTwo" type="button" onClick={()=>{makePayment(amount,seller,courseId,courseName)}}>
+        Pay Now
+      </button>
     </>
     
   );

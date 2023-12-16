@@ -1,5 +1,4 @@
 import CheckoutForm from "./CheckoutForm";
-import { useEffect, useState } from "react";
 
 const Payment = ({amount,title,seller,isVisible,onClose}) => {  
 
@@ -18,7 +17,6 @@ const Payment = ({amount,title,seller,isVisible,onClose}) => {
                 <h1 className="text-2xl text-[#192655] font-semibold font-primary text-center mb-4">Make Payment</h1>
                 <h1 className="text-xl text-[#192655] font-semibold font-primary text-center mb-4">Course Title : {title}</h1>
                 <h1 className="text-xl text-[#192655] font-semibold font-primary text-center mb-4">Amount: {amount} BDT</h1>
-                <h1 className="text-xl text-[#192655] font-semibold font-primary text-center mb-4">seller: {seller} </h1>
                 <CheckoutForm amount={amount} seller={seller} courseName={title}/>
             </div>
         </div>

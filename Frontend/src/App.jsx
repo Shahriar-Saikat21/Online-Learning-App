@@ -20,6 +20,8 @@ import StudentProfile from "./Pages/StudentProfile";
 import InstructorHome from "./Pages/InstructorHome";
 import InstructorProfile from "./Pages/InstructorProfile";
 import Layout from "./Components/Layout";
+import SellSucess from "./Pages/SellSucess";
+import PurchaseErrorPage from "./Pages/PurchaseErrorPage";
 
 const queryClient = new QueryClient();
 
@@ -139,6 +141,20 @@ const App = () => {
             <Layout>
               <StudentProfile />
             </Layout>
+          }
+        />
+
+        <Route
+          path="/payemntSuccess/:courseId/:sellerId/:price"
+          element={
+            <SellSucess/>
+          }
+        />
+
+        <Route
+          path="/cancel"
+          element={
+            <PurchaseErrorPage/>
           }
         />
 
