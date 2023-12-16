@@ -20,7 +20,8 @@
     "react-icons": "^4.11.0",
     "react-player": "^2.13.0",
     "react-query": "^3.39.3",
-    "react-router-dom": "^6.17.0"
+    "react-router-dom": "^6.17.0",
+    "react-to-pdf": "^1.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

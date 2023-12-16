@@ -7,13 +7,9 @@ const studentCart = async () => {
   })
 }
 
-async function downloadCertificate(id,picLink){
-    // const data = await axios.get(`http://localhost:3000/deleteNews/${id}/${picLink}`,{
-    //   withCredentials: true,
-    // })
-    // alert(data.data.message);
-    console.log("Download Certificate")
-}
+const openInNewTab = (url) => {
+  window.open(url, "_blank", "noreferrer");
+};
 
 const StudentPurchaseHistory = () => {
     const {data, isLoading, isError, error} = useQuery('studentCart', studentCart )
@@ -27,7 +23,7 @@ const StudentPurchaseHistory = () => {
     }
 
     return (
-        <div className="w-full md:mx-w-[1460px]">
+      <div className="w-full md:mx-w-[1460px]">
       <h1 className="text-3xl font-semibold text-[#192655] md:pl-[100px]">Purchase History</h1>
       <div className="flex flex-col md:px-[80px] pb-[20px]">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -63,7 +59,8 @@ const StudentPurchaseHistory = () => {
                     <td className="whitespace-nowrap px-6 py-4">{item.p_id}</td>
                     <td className="whitespace-nowrap px-6 py-4">{item.p_amount} BDT</td>
                     <td className="whitespace-nowrap px-6 py-4">
-                      <button type="submit" className="btn md:w-full" onClick={()=>downloadCertificate()}>
+                      <button className="btn md:w-full" role="link"
+                        onClick={() => openInNewTab(`/certificate/${item.co_id}/${item.co_title}`)}>
                         Download Certificate
                       </button>
                     </td>

@@ -22,6 +22,7 @@ import InstructorProfile from "./Pages/InstructorProfile";
 import Layout from "./Components/Layout";
 import SellSucess from "./Pages/SellSucess";
 import PurchaseErrorPage from "./Pages/PurchaseErrorPage";
+import PDFDownloadPage from "./Pages/PDFDownloadPage";
 
 const queryClient = new QueryClient();
 
@@ -155,6 +156,13 @@ const App = () => {
           path="/cancel"
           element={
             <PurchaseErrorPage/>
+          }
+        />
+
+        <Route
+          path="/certificate/:courseId/:courseTitle"
+          element={
+            <PDFDownloadPage/>
           }
         />
 
