@@ -2,7 +2,7 @@ import express from "express";
 import upload from '../Middleware/uploadImage.js';
 import uploadVideo from '../Middleware/uploadVideo.js';
 import { authentication } from '../Middleware/authentication.js';
-import { instructorSale,instructorCart,instructorIncome } from '../Controller/instructorHomeController.js';
+import { instructorSale,instructorCart,instructorIncome,withdrawReq,withdrawReqHistory } from '../Controller/instructorHomeController.js';
 import {instructorProfile,instructorCourse,changeProfilePic,editProfileInfo} from '../Controller/instructorProfileController.js'
 import { createCourse,getCourseCategory,editCourseHead } from '../Controller/instructorCreateController.js';
 import {getCourseHead,addModule,getModule,deleteCourse} from '../Controller/instructorCourseController.js';
@@ -36,5 +36,9 @@ instrctorRoute.get("/getModule",getModule);
 instrctorRoute.get("/deleteCourse",authentication,deleteCourse);
 
 instrctorRoute.put("/editProfileInfo",authentication,editProfileInfo);
+
+instrctorRoute.post("/withdrawRequest",authentication,withdrawReq);
+
+instrctorRoute.get('/withdarwHistory',authentication,withdrawReqHistory);
 
 export default instrctorRoute;

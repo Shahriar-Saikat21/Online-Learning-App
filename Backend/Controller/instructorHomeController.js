@@ -34,10 +34,34 @@ export const instructorCart = (req, res) => {
 export const instructorIncome = (req, res) => {
   const query = `SELECT (SELECT COUNT(p_id) FROM purchase WHERE seller_id = ${req.userId}
   ) AS TOTAL_SELL,
-  (SELECT SUM(w_amount) FROM withdraw WHERE u_id = ${req.userId}) AS WITHDRAW_AMOUNT,
+  (SELECT SUM(w_amount) FROM withdraw WHERE u_id = ${req.userId} AND w_status = 'Sent') AS WITHDRAW_AMOUNT,
   (SELECT SUM(p_amount) FROM purchase WHERE seller_id = ${req.userId}) AS TOTAL_INCOME`;
   connection.query(query, function (err, rows) {
     if (err) throw err;
     res.json(rows);
   });
+};
+
+export const withdrawReq = (req, res) => {
+  try{
+    const query = "INSERT INTO withdraw(w_id, w_date, w_amount, u_id, w_status) VALUES ('',CURRENT_TIMESTAMP(),?,?,'Pending')";
+    connection.query(query,[parseInt(req.body.amount),req.userId], function (err, rows) {
+      if (err) throw err;
+      res.json({info:rows,success:true,message:"Withdraw Request Sent Successfully"});
+    });
+  }catch(error){
+    res.json({success:false,message:error.message});
+  }
+};
+
+export const withdrawReqHistory = (req, res) => {
+  try{
+    const query = "SELECT * FROM withdraw WHERE u_id = ?";
+    connection.query(query,[req.userId], function (err, rows) {
+      if (err) throw err;
+      res.json({info:rows,success:true,message:"Withdraw Request History Sent Successfully"});
+    });
+  }catch(error){
+    res.json({success:false,message:error.message});
+  }
 };

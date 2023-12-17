@@ -1,15 +1,14 @@
 import {useQuery} from 'react-query'
 import axios from 'axios'
 
-const instructorCart = async () => {
-  return axios.get('http://localhost:3000/instructorCart',{
+const withdrawCart = async () => {
+  return axios.get('http://localhost:3000/withdarwHistory',{
     withCredentials: true,
   })
 }
 
-const InstructorChart = () => {
-
-  const {data, isLoading, isError, error} = useQuery('instructorCart', instructorCart )
+const InstructorWithdrawHistory = () => {
+    const {data, isLoading, isError, error} = useQuery('instructorWithdarwHistory', withdrawCart )
 
   if (isLoading) {
     return <div>Loading..</div>
@@ -22,7 +21,7 @@ const InstructorChart = () => {
   return (
     
     <div className="w-full md:mx-w-[1460px]">
-      <h1 className="text-3xl font-semibold text-[#192655] md:pl-[100px]">Course Sales History</h1>
+      <h1 className="text-3xl font-semibold text-[#192655] md:pl-[100px]">Withdraw History</h1>
       <div className="flex flex-col md:px-[80px] pb-[20px]">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -31,28 +30,28 @@ const InstructorChart = () => {
                 <thead className="border-b font-bold text-primary ">
                   <tr>
                     <th scope="col" className="px-6 py-4">
-                      Title
+                      Withdraw Request ID
                     </th>
                     <th scope="col" className="px-6 py-4">
-                      Created At
+                        Request Date
                     </th>
                     <th scope="col" className="px-6 py-4">
-                      Enrolled
+                      Requested Amount
                     </th>
                     <th scope="col" className="px-6 py-4">
-                      Income
+                      Request Status
                     </th>
                   </tr>
                 </thead>
                 <tbody className="font-semibold text-primary">
-                  {data?.data.map((item,i) => {
+                  {data?.data.info.map((item,i) => {
                     return <tr key={i} className="border-b transition duration-300 ease-in-out hover:bg-gray-300 ">
                     <td className="whitespace-nowrap px-6 py-4 font-medium">
-                    {item.TITLE}
+                    {item.w_id}
                     </td>
-                    <td className="whitespace-nowrap px-6 py-4">{item.CREATED}</td>
-                    <td className="whitespace-nowrap px-6 py-4">{item.ENROLLED}</td>
-                    <td className="whitespace-nowrap px-6 py-4">{item.SELL} BDT</td>
+                    <td className="whitespace-nowrap px-6 py-4">{item.w_date}</td>
+                    <td className="whitespace-nowrap px-6 py-4">BDT {item.w_amount}</td>
+                    <td className="whitespace-nowrap px-6 py-4">{item.w_status}</td>
                   </tr> 
                   })}
                 </tbody>
@@ -65,4 +64,4 @@ const InstructorChart = () => {
   );
 };
 
-export default InstructorChart;
+export default InstructorWithdrawHistory;

@@ -5,6 +5,7 @@ import InstructorIncome from "../Components/InstructorIncome";
 import InstructorChart from "../Components/InstructorChart";
 import WithdrawModal from "../Components/WithdrawModal";
 import InstructorSaleCart from "../Components/InstructorSaleCart";
+import InstructorWithdrawHistory from "../Components/InstructorWithdrawHistory";
 
 const InstructorHome = () => {
     const [showWithdarwModal, setWithdarwModal] = useState(false);
@@ -22,6 +23,7 @@ const InstructorHome = () => {
             <InstructorChart/>
             <InstructorSaleCart/>
             <WithdrawModal isVisible={showWithdarwModal} onClose={()=>{setWithdarwModal(false)}}/>
+            <InstructorWithdrawHistory/>
         </div>
     );
 };
