@@ -1,7 +1,7 @@
 import express from 'express'
 
 import upload from '../Middleware/uploadImage.js';
-import { adminIncome,adminCategory,adminSale } from '../Controller/adminHomeController.js';
+import { adminIncome,adminCategory,adminSale,adminWithdarwHistory,updateWithdrawStatus } from '../Controller/adminHomeController.js';
 import {newsTableController,updateNewsStatus,deleteNews,uploadNews} from '../Controller/adminNewsController.js';
 import {addCategory,showCategory,adminChangePassword} from '../Controller/adminCategoryController.js';
 import { authentication } from '../Middleware/authentication.js';
@@ -37,5 +37,9 @@ adminRoute.get("/showCategory", authentication,showCategory);
 
 //admin change password
 adminRoute.put("/adminChangePassword", authentication,adminChangePassword);
+
+adminRoute.get("/AdminWithdarwHistory", authentication,adminWithdarwHistory);
+
+adminRoute.get("/updateWithdrawStatus", authentication,updateWithdrawStatus);
 
 export default adminRoute;

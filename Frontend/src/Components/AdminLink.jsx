@@ -7,12 +7,12 @@ const AdminLink = () => {
     const [showAdminPassChangeModal, setAdminPassChangeModal] = useState(false);
     return (
         <div className="flex flex-col md:flex-row md:justify-start md:items-start w-full h-auto pt-[90px] px-[50px]">
-            <Link
+        {/* <Link
           to={"/admin-check"}
           className="text-lg text-[#192655] hover:text-gray-600 cursor-pointer mr-5"
         >
           Check Profile
-        </Link>
+        </Link> */}
         <Link
           to={"/admin-news"}
           className="text-lg text-[#192655] hover:text-gray-600 cursor-pointer mr-5"

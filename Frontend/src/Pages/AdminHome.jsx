@@ -2,6 +2,7 @@ import AdminLink from "../Components/AdminLink";
 import AdminIncome from "../Components/AdminIncome";
 import AdminCategoryChart from "../Components/AdminCategoryChart";
 import AdminSaleChart from "../Components/AdminSaleChart";
+import AdminWithdrawChart from "../Components/AdminWithdrawChart";
 import {Navigate} from 'react-router-dom'
 
 const AdminHome = () => {
@@ -16,6 +17,7 @@ const AdminHome = () => {
             <div className="flex  w-full h-auto py-10 flex-col md:justify-center px-[20px] md:items-center gap-4">
                 <AdminCategoryChart />
                 <AdminSaleChart />
+                <AdminWithdrawChart />
             </div>
         </div>
     );

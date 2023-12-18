@@ -6,7 +6,7 @@ export const adminIncome = (req, res) => {
                     (SELECT COUNT(co_id) FROM courses) AS TOTAL_COURSE,
                     (SELECT COUNT(p_id) FROM purchase) AS TOTAL_SELL,
                     (SELECT SUM(p_amount) FROM purchase) AS SELL_AMOUNT,
-                    (SELECT SUM(w_amount) FROM withdraw) AS WITHDRAW_AMOUNT`;
+                    (SELECT SUM(w_amount) FROM withdraw WHERE w_status != 'Pending') AS WITHDRAW_AMOUNT`;
 
   connection.query(query, function (err, rows) {
     if (err) throw err;
@@ -15,16 +15,19 @@ export const adminIncome = (req, res) => {
 };
 
 export const adminCategory = (req, res) => {
-  const query = `SELECT T.cat_name, TOTAL_SELL, CURRENT_SELL FROM
-                (SELECT cat_name,COUNT(co_id) AS CURRENT_SELL FROM
-                (SELECT * FROM categories 
-                JOIN purchase WHERE cat_id = co_id) AS TEMP_TABLE 
-                WHERE MONTH(p_date) = MONTH(now()) AND YEAR(p_date) = YEAR(now())
-                GROUP BY cat_name) AS T 
-                JOIN (SELECT cat_name,COUNT(cat_name) AS TOTAL_SELL FROM
-                (SELECT * FROM categories 
-                JOIN purchase WHERE cat_id = co_id) AS TEMP_TABLE GROUP BY cat_name) AS S 
-                WHERE T.cat_name = S.cat_name`;
+  const query = `SELECT CUR.cat_name, TOTAL_SELL,CURRENT_SELL FROM
+  (SELECT cat_name,COUNT(cat_name) AS CURRENT_SELL FROM purchase
+  JOIN (SELECT co_id AS CO,cat_name FROM courses
+  JOIN categories
+  WHERE courses.cat_id = categories.cat_id) AS T 
+  WHERE co_id = CO AND MONTH(p_date) = MONTH(now()) AND YEAR(p_date) = YEAR(now()) GROUP BY cat_name) AS CUR
+  JOIN (SELECT cat_name,COUNT(cat_name) AS TOTAL_SELL FROM purchase
+  JOIN (SELECT co_id AS CO,cat_name FROM courses
+  JOIN categories
+  WHERE courses.cat_id = categories.cat_id) AS T 
+  WHERE co_id = CO
+  GROUP BY cat_name) AS TOT
+  WHERE CUR.cat_name = TOT.cat_name`;
   connection.query(query, function (err, rows) {
     if (err) throw err;
     res.json(rows);
@@ -32,18 +35,47 @@ export const adminCategory = (req, res) => {
 };
 
 export const adminSale = (req, res) => {
-  const query = `SELECT T.cat_name, TOTAL_SELL, CURRENT_SELL FROM
-  (SELECT cat_name,SUM(p_amount) AS CURRENT_SELL FROM
-  (SELECT * FROM categories 
-  JOIN purchase WHERE cat_id = co_id) AS TEMP_TABLE 
-  WHERE MONTH(p_date) = MONTH(now()) AND YEAR(p_date) = YEAR(now())
-  GROUP BY cat_name) AS T 
-  JOIN (SELECT cat_name,SUM(p_amount) AS TOTAL_SELL FROM
-  (SELECT * FROM categories 
-  JOIN purchase WHERE cat_id = co_id) AS TEMP_TABLE GROUP BY cat_name) AS S 
-  WHERE T.cat_name = S.cat_name`;
+  const query = `SELECT CUR.cat_name, TOTAL_SELL,CURRENT_SELL FROM
+  (SELECT cat_name,SUM(p_amount) AS CURRENT_SELL FROM purchase
+  JOIN (SELECT co_id AS CO,cat_name FROM courses
+  JOIN categories
+  WHERE courses.cat_id = categories.cat_id) AS T 
+  WHERE co_id = CO AND MONTH(p_date) = MONTH(now()) AND YEAR(p_date) = YEAR(now()) GROUP BY cat_name) AS CUR
+  JOIN (SELECT cat_name,SUM(p_amount) AS TOTAL_SELL FROM purchase
+  JOIN (SELECT co_id AS CO,cat_name FROM courses
+  JOIN categories
+  WHERE courses.cat_id = categories.cat_id) AS T 
+  WHERE co_id = CO
+  GROUP BY cat_name) AS TOT
+  WHERE CUR.cat_name = TOT.cat_name`;
   connection.query(query, function (err, rows) {
     if (err) throw err;
     res.json(rows);
   });
+};
+
+
+export const adminWithdarwHistory = (req, res) => {
+  try{
+    const query = "SELECT * FROM withdraw";
+    connection.query(query, function (err, rows) {
+      if (err) throw err;
+      res.json({info:rows,success:true,message:"Withdraw Request History Sent Successfully"});
+    });
+  }catch(error){
+    res.json({success:false,message:error.message});
+  }
+};
+
+
+export const updateWithdrawStatus = (req, res) => {
+  try{
+    const query = "UPDATE withdraw SET w_status = ? WHERE w_id = ?";
+    connection.query(query,[req.query.status,req.query.id], function (err, rows) {
+      if (err) throw err;
+      res.json({info:rows,success:true,message:"Withdraw Request Status Updated Successfully"});
+    });
+  }catch(error){
+    res.json({success:false,message:error.message});
+  }
 };

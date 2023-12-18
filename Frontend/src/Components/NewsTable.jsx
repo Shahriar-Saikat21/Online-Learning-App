@@ -9,7 +9,6 @@ const newsAllView = async () => {
 
 async function updateStatus(id,status){
   const formData = {id: id, status: status};
-  console.log(formData)
   const data = await axios.put('http://localhost:3000/updateNewsStatus',formData,{
     withCredentials: true,
   })

@@ -27,3 +27,16 @@ export const seePopularCourse = async (req, res) => {
     res.json({message: error.message,success: false})
   }
 };
+
+
+export const searchCourse = async (req, res) => {
+  try{
+    const query = `SELECT * FROM courses WHERE co_title LIKE '%${req.query.course}%'`;
+    connection.query(query, function (err, rows) {
+      if (err) throw err;
+      res.json({success: true,info:rows});
+    });
+  }catch(error){
+    res.json({message: error.message,success: false})
+  }
+};
