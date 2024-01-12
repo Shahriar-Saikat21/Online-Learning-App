@@ -1,8 +1,10 @@
 import {Navigate} from 'react-router-dom'
 import StudentPurchaseHistory from '../Components/StudentPurchaseHistory';
+import {useSelector} from 'react-redux';
 
 const StudentHome = () => {
-    if(!localStorage.getItem("token") && sessionStorage.getItem("status")!=="student"){
+    const isLogin = useSelector((state) => state.logAuth.status);
+    if(isLogin!=="student"){
         return <Navigate to='/login' />
     }
     return (

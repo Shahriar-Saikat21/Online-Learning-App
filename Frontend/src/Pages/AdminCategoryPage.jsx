@@ -1,9 +1,11 @@
 import ShowCategory from "../Components/AdminShowAllCategory";
 import AddCategory from "../Components/AdminAddCategory";
 import {Navigate} from 'react-router-dom'
+import {useSelector} from 'react-redux';
 
 const AdminCategoryPage = () => {
-  if(!localStorage.getItem("token") && sessionStorage.getItem("status")!=="admin"){
+  const isLogin = useSelector((state) => state.logAuth.status);
+  if(isLogin!=="admin"){
     return <Navigate to='/login' />
 }
   return (

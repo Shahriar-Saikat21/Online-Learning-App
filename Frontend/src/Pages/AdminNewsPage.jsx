@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import {Navigate} from 'react-router-dom'
-
+import {useSelector} from 'react-redux';
 import NewsModal from "../Components/NewsModal";
 import NewsTable from "../Components/NewsTable";
 
 const AdminNewsPage = () => {
+  const isLogin = useSelector((state) => state.logAuth.status);
   const [addNewsModal, setAddNewsModal] = useState(false);
-  if(!localStorage.getItem("token") && sessionStorage.getItem("status")!=="admin"){
+  if(isLogin!=="admin"){
     return <Navigate to='/login' />
 }
   return (

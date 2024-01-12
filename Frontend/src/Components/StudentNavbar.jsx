@@ -1,10 +1,11 @@
 import {useState} from 'react'
 import { NavLink,useNavigate} from "react-router-dom";
 import { HiOutlineBars4,HiOutlineXMark } from "react-icons/hi2";
-
+import {useDispatch} from 'react-redux';
+import {logout} from '../Redux/Slices/loginSlice';
 import axios from 'axios';
 
-const logout = async ()=>{
+const logoutServer = async ()=>{
   await axios.get('http://localhost:3000/logout',{
     withCredentials:true
   });
@@ -16,7 +17,7 @@ const StudentNavbar = () => {
   const[toggle,setToggle]=useState(false);
   const toggleHandler=()=>{setToggle(!toggle)};
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
 
   return (
     <nav className="bg-primary fixed w-full h-[60px] z-20">
@@ -28,7 +29,8 @@ const StudentNavbar = () => {
           <NavLink to={"/student-home"}className=" pcNav">Home</NavLink>
           <NavLink to={"/student-profile"}className=" pcNav">Profile</NavLink>
           <button className=" pcNav" onClick={async ()=>{
-              await logout(); 
+              await logoutServer(); 
+              dispatch(logout());
               navigate('/');              
             }}>Logout</button>
         </ul>
@@ -44,7 +46,8 @@ const StudentNavbar = () => {
             <NavLink to={"/student-profile"} className=" mobileNav">Profile</NavLink>   
             <NavLink to={"/student-course"} className=" mobileNav">Course</NavLink>    
             <button className=" mobileNav" onClick={async ()=>{
-              await logout(); 
+              await logoutServer(); 
+              dispatch(logout());
               navigate('/');              
             }}>Logout</button>    
           </ul>

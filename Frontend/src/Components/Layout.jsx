@@ -2,9 +2,10 @@ import VisitorNavbar from "./VisitorNavbar";
 import AdminNavbar from "./AdminNavbar";
 import StudentNavbar from "./StudentNavbar";
 import InstructorNavbar from "./InstructorNavbar";
+import {useSelector} from 'react-redux';
 
 const Layout = ({ children }) => {
-  const status = sessionStorage.getItem("status");
+  const status = useSelector((state) => state.logAuth.status);
   return (
     <div>
       {(() => {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {Navigate} from 'react-router-dom'
-
+import {useSelector} from 'react-redux';
 import InstructorIncome from "../Components/InstructorIncome";
 import InstructorChart from "../Components/InstructorChart";
 import WithdrawModal from "../Components/WithdrawModal";
@@ -9,7 +9,8 @@ import InstructorWithdrawHistory from "../Components/InstructorWithdrawHistory";
 
 const InstructorHome = () => {
     const [showWithdarwModal, setWithdarwModal] = useState(false);
-    if(!localStorage.getItem("token") && sessionStorage.getItem("status")!=="instructor"){
+    const isLogin = useSelector((state) => state.logAuth.status);
+    if(isLogin!=="instructor"){
         return <Navigate to='/login' />
     }
     return (

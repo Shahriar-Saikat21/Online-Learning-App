@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.0.1",
     "@stripe/stripe-js": "^2.2.1",
     "apexcharts": "^3.44.0",
     "axios": "^1.5.1",
@@ -20,6 +21,7 @@
     "react-icons": "^4.11.0",
     "react-player": "^2.13.0",
     "react-query": "^3.39.3",
+    "react-redux": "^9.0.4",
     "react-router-dom": "^6.17.0",
     "react-to-pdf": "^1.0.1"
   },

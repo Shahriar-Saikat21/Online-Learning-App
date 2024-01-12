@@ -2,6 +2,8 @@ import React from "react";
 import {useForm} from "react-hook-form";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import {useDispatch} from 'react-redux';
+import {login} from '../Redux/Slices/loginSlice';
 
 const logindata = async(data) => {
   try {
@@ -17,12 +19,12 @@ const logindata = async(data) => {
 const Login = () => {
   const {register,handleSubmit,formState:{errors},reset} = useForm();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const useLogin = async (data) => {
     const result = await logindata(data);
     if(result.success){
-      sessionStorage.setItem('status', result.role);
-      localStorage.setItem('token', result.success);
+      dispatch(login({role:result.role}));
       const toBuy = localStorage.getItem('toBuy');
       if(toBuy!==null){
         localStorage.removeItem('toBuy');

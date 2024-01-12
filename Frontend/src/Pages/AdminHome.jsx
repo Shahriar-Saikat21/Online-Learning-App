@@ -4,9 +4,11 @@ import AdminCategoryChart from "../Components/AdminCategoryChart";
 import AdminSaleChart from "../Components/AdminSaleChart";
 import AdminWithdrawChart from "../Components/AdminWithdrawChart";
 import {Navigate} from 'react-router-dom'
+import {useSelector} from 'react-redux';
 
 const AdminHome = () => {
-    if(!localStorage.getItem("token") && sessionStorage.getItem("status")!=="admin"){
+    const isLogin = useSelector((state) => state.logAuth.status);
+    if(isLogin!=="admin"){
         return <Navigate to='/login' />
     }
     return (

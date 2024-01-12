@@ -1,8 +1,11 @@
 import Profile from "../Components/Profile";
 import CourseList from '../Components/CourseCardOne';
 import {Navigate} from 'react-router-dom'
+import {useSelector} from 'react-redux';
+
 const InstructorProfile = () => {
-  if(!localStorage.getItem("token") && sessionStorage.getItem("status")!=="instructor"){
+  const isLogin = useSelector((state) => state.logAuth.status);
+  if(isLogin!=="instructor"){
     return <Navigate to='/login' />
   }
   return (

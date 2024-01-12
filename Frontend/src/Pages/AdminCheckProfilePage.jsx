@@ -2,9 +2,11 @@ import SearchBar from "./../Components/SearchBar";
 import ProfileCard from "../Components/ProfileCard";
 import CourseLink from "../Components/CourseLink";
 import {Navigate} from 'react-router-dom'
+import {useSelector} from 'react-redux';
 
 const AdminCheckProfilePage = () => {
-  if(!localStorage.getItem("token") && sessionStorage.getItem("status")!=="admin"){
+  const isLogin = useSelector((state) => state.logAuth.status);
+  if(isLogin!=="admin"){
     return <Navigate to='/login' />
 }
   return (
