@@ -38,8 +38,10 @@ adminRoute.get("/showCategory", authentication,showCategory);
 //admin change password
 adminRoute.put("/adminChangePassword", authentication,adminChangePassword);
 
+//admin show withdraw request history
 adminRoute.get("/AdminWithdarwHistory", authentication,adminWithdarwHistory);
 
+//admin update withdraw request status
 adminRoute.get("/updateWithdrawStatus", authentication,updateWithdrawStatus);
 
 export default adminRoute;

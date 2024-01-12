@@ -1,9 +1,9 @@
 import mysql from "mysql2";
 
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
+  host: process.env.dbHost,
+  user: process.env.dbUser,
+  password: process.env.dbPassword,
   database: 'learning-app',
 });
 

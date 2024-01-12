@@ -23,6 +23,6 @@ export const signupValidation = async (req, res) => {
       res.json({ success: true, message: "Signup Successfully" });
     });
   } catch (err) {
-    res.status(200).json({ message: err.message, success: false });
+    res.json({ message: err.message, success: false });
   }
 };
